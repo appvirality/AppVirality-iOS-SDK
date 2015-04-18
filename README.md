@@ -29,5 +29,19 @@ Initializing the AppVirality SDK.This has to be done in very begining of your Ap
 ```
 Replace “YOUR_APP_KEY” with your App key from Dashboard. You can get your App key from AppVirality Dashboard → AppDetails page.
 
+##### STEP : 4
+
+Getting Referrer Details
+
+This is required if you want to show the welcome screen on first App launch. You can get the referrer details by calling the below code block
+
+```objc
+[AppVirality getReferrerDetails:^(NSDictionary *referrerDetails) {
+            NSLog(@"ref details %@",referrerDetails);
+        }];
+```
+
+
+
 
 
