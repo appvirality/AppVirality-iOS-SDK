@@ -48,8 +48,8 @@ The following callback method will return the referral campaign details. Use the
 
 ```objc
 [AppVirality showGrowthHack:GrowthHackTypeWordOfMouth completion:^(NSDictionary *campaignDetails) {
-            NSLog(@"growth hack details %@",campaignDetails); 
-            }];
+            NSLog(@"growth hack details %@",campaignDetails);
+        }];
 ```
 
 
