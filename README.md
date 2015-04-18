@@ -67,5 +67,6 @@ Call the below method after successful completion of the social action. i.e afte
 Input Parameters:
 
 shareMessage - The message that user has shared on social media.
+
 socialActionId - User performed social action Id, this you will get from campaign Details.
 
