@@ -51,6 +51,21 @@ The following callback method will return the referral campaign details. Use the
             NSLog(@"growth hack details %@",campaignDetails);
         }];
 ```
+##### STEP : 6
 
+Record Social Action
 
+Call the below method after successful completion of the social action. i.e after sharing on social media. This records the user social action.
+
+```objc
+[AppVirality recordSocialActionForGrowthHack:GrowthHackTypeWordOfMouth WithParams:@{@"shareMessage":[[campaignDetails valueForKeyPath:@"socialactions.shareMessage"]firstObject],@"socialActionId":[[campaignDetails valueForKeyPath:@"socialactions.socialActionId"]firstObject]} completion:^(BOOL success) {
+                        NSLog(@"social sucess %d",success);
+                    }];
+
+```
+
+Input Parameters:
+
+shareMessage - The message that user has shared on social media.
+socialActionId - User performed social action Id, this you will get from campaign Details.
 
