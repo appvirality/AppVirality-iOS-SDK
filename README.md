@@ -4,6 +4,8 @@
 
 Register your iOS Application at AppVirality.com and copy the AppKey from Dashboard.
 
+<b>NOTE:</b> If you have already registered your Android Application and want to run the same referral campaign on iOS App, you need not register your iOS App again. You have to use the same Android AppKey for iOS App as well.
+
 AppVirality iOS SDK supports iOS V6.0 and above.  Please contact support if you need support for lower versions.
 
 #### STEP : 1
@@ -23,8 +25,11 @@ Initializing the AppVirality SDK by adding the following code in your -applicati
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [AppVirality initWithApiKey:@"6e039a45b2af42789d82a41f005fb58b"];
+    [AppVirality initWithApiKey:@"YOUR_APP_KEY"];
     return YES;
 }
 ```
+Replace “YOUR_APP_KEY” with your App key from Dashboard. You can get your App key from AppVirality Dashboard → AppDetails page.
+
+
 
