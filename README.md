@@ -40,8 +40,17 @@ This is required if you want to show the welcome screen on first App launch. You
             NSLog(@"ref details %@",referrerDetails);
         }];
 ```
+##### STEP : 5
 
+Show GrowthHack
 
+The following callback method will return the referral campaign details. Use the campaign details to show the referral screen to the App users.
+
+```objc
+[AppVirality showGrowthHack:GrowthHackTypeWordOfMouth completion:^(NSDictionary *campaignDetails) {
+            NSLog(@"growth hack details %@",campaignDetails); 
+            }];
+```
 
 
 
