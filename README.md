@@ -33,7 +33,7 @@ Replace “YOUR_APP_KEY” with your App key from Dashboard. You can get your Ap
 
 ##### STEP : 4
 
-Getting Referrer Details
+###### Getting Referrer Details
 
 This is required if you want to show the welcome screen on first App launch. You can get the referrer details by calling the below code block
 
@@ -44,7 +44,7 @@ This is required if you want to show the welcome screen on first App launch. You
 ```
 ##### STEP : 5
 
-Show GrowthHack
+###### Show GrowthHack
 
 The following callback method will return the referral campaign details. Use the campaign details to show the referral screen to the App users.
 
@@ -58,7 +58,7 @@ campaignDetails includes list of social actions configured on AppVirality Dashbo
 
 ##### STEP : 6
 
-Record Social Action
+###### Record Social Action
 
 Call the below method after successful completion of the social action. i.e after sharing on social media. This records the user social action.
 
@@ -69,7 +69,7 @@ Call the below method after successful completion of the social action. i.e afte
 
 ```
 
-Input Parameters:
+###### Input Parameters:
 
 shareMessage - The message that user has shared on social media.
 
@@ -77,7 +77,7 @@ socialActionId - User performed social action Id, this you will get from campaig
 
 ##### STEP : 7
 
-Record Conversion Event
+###### Record Conversion Event
 
 ```objc
 
@@ -86,7 +86,7 @@ NSLog(@"conversion result %@",conversionResult);
 }];
 
 ```
-Input Parameters:
+###### Input Parameters:
 
 eventName — Install, Signup, Transaction & Any defined Custom Events
 
@@ -96,20 +96,20 @@ transactionUnit — Transaction currency unit
 
 extrainfo — Custom Info which is stored across the event and will be provided on query of rewards. It is generally used to save transaction information which can be used to cross check later while rewarding. Extra Info is expected in encoded Uri format.
 
-Output Parameters:
+###### Output Parameters:
 
 Returns true - On successful conversion i.e if this conversion event matches any of the reward rule configured on dashboard. 
 
 ##### STEP : 8
 
-Get User Balance
+###### Get User Balance
 
 ```objc
 [AppVirality getUserBalance:GrowthHackTypeWordOfMouthcompletion:^(NSDictionary *userInfo) {
 NSLog(@" user balance %@",userInfo);
         }];
 ```
-Output  Parameters:
+###### Output  Parameters:
 
 * <b>userpoints</b> — List of points
  * <b>total</b> — Total Rewards for that Campaign
@@ -121,14 +121,14 @@ Output  Parameters:
 
 ##### STEP : 9
 
-Set User Details
+###### Set User Details
 
 ```objc
 [AppVirality setUserDetails:@{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pic.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"true"}completion:^(BOOL success) {
 NSLog(@"user details %d",success);
         }];
 ```
-######## Input Parameters:
+###### Input Parameters:
 
 EmailId — Email of the user.
 
