@@ -53,7 +53,8 @@ The following callback method will return the referral campaign details. Use the
             NSLog(@"growth hack details %@",campaignDetails);
         }];
 ```
-campaignDetails includes list of social actions configured on AppVirality Dashboard. Please use the array "socialactions" to get the share messages and unique share links for each social action.
+campaignDetails includes list of social actions configured on AppVirality Dashboard. Please use the array with name "socialactions" to get the social share messages and unique share links for each social action.
+
 
 ##### STEP : 6
 
