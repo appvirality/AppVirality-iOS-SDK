@@ -127,3 +127,15 @@ AppUserName — First Name of the user, required to personalize the referral mes
 
 ProfileImage — User profile picture URL, required to personalize the referral messages.
 
+UserIdInstore — ID of the user in your App(helps to identify users on dashboard as you do in your app).
+
+city — City of the User Location.
+
+country — Country of the User Location.
+
+state — State of the User Location.
+
+Phone — User phone number.
+
+isExistingUser — Set this as True, if you identify the user as existing user(this is useful if you don't want to reward existing users).
+
