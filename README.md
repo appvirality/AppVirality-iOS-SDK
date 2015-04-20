@@ -2,6 +2,8 @@
 
 Register your iOS Application at AppVirality.com and copy the AppKey from Dashboard.
 
+![Alt text](https://github.com/appvirality/appvirality-sdk-android/blob/master/images/App-key-obtaining.jpg?raw=true)
+
 <b>NOTE</b>: If you have already registered your Android Application and want to run the same referral campaign on iOS App, you need not register your iOS App again. You have to use the same Android AppKey for iOS App as well.
 
 AppVirality iOS SDK supports iOS V6.0 and above.  Please contact support if you need support for lower versions.
@@ -69,4 +71,6 @@ Input Parameters:
 shareMessage - The message that user has shared on social media.
 
 socialActionId - User performed social action Id, this you will get from campaign Details.
+
+
 
