@@ -128,7 +128,7 @@ Set User Details
 NSLog(@"user details %d",success);
         }];
 ```
-###### Input Parameters:
+######## Input Parameters:
 
 EmailId — Email of the user.
 
