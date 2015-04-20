@@ -109,6 +109,15 @@ Get User Balance
 NSLog(@" user balance %@",userInfo);
         }];
 ```
+Output  Parameters:
+
+* <b>userpoints</b> — List of points
+ * <b>total</b> — Total Rewards for that Campaign
+ * <b>claimed</b> — Rewards claimed for that Campaign
+ * <b>redeemable_balance</b> — Redeemable Balance i.e. rewards which met the review period and redemption cap. 
+ * <b>underreview</b> — Rewards under review for that Campaign
+ * <b>rewardunit</b> — Reward unit
+ * <b>redemptionthreshold</b> — Redemption cap, it helps to let you know when to distribute the referrer reward.
 
 ##### STEP : 9
 
