@@ -81,7 +81,7 @@ Record Conversion Event
 
 ```objc
 
-[AppViralitysaveConversionEvent:@{@"eventName":@"Transaction",@"transactionUnit":@"Rs",@"transactionValue":@"560",@"extrainfo":@"orderid:78F6YG"}completion:^(NSDictionary *conversionResult) {
+[AppVirality saveConversionEvent:@{@"eventName":@"Transaction",@"transactionUnit":@"Rs",@"transactionValue":@"560",@"extrainfo":@"orderid:78F6YG"}completion:^(NSDictionary *conversionResult) {
 NSLog(@"conversion result %@",conversionResult);
 }];
 
@@ -96,4 +96,23 @@ transactionUnit — Transaction currency unit
 
 extrainfo — Custom Info which is stored across the event and will be provided on query of rewards. It is generally used to save transaction information which can be used to cross check later while rewarding. Extra Info is expected in encoded Uri format.
 
+##### STEP : 8
+
+Get User Balance
+
+```objc
+[AppVirality getUserBalance:GrowthHackTypeWordOfMouthcompletion:^(NSDictionary *userInfo) {
+NSLog(@" user balance %@",userInfo);
+        }];
+```
+
+##### STEP : 9
+
+Set User Details
+
+```objc
+[AppVirality setUserDetails:@{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pic.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"true"}completion:^(BOOL success) {
+NSLog(@"user details %d",success);
+        }];
+```
 
