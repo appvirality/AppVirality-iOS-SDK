@@ -6,7 +6,7 @@ Register your iOS Application at AppVirality.com and copy the AppKey from Dashbo
 
 ![Alt text](https://github.com/appvirality/appvirality-sdk-android/blob/master/images/App-key-obtaining.jpg?raw=true)
 
-AppVirality iOS SDK supports iOS V6.0 and above.  Please contact support if you need support for lower versions.
+AppVirality iOS SDK supports iOS V6.0 and above.  Please contact us if you need support for lower versions.
 
 ##### STEP : 1
 
