@@ -96,6 +96,10 @@ transactionUnit — Transaction currency unit
 
 extrainfo — Custom Info which is stored across the event and will be provided on query of rewards. It is generally used to save transaction information which can be used to cross check later while rewarding. Extra Info is expected in encoded Uri format.
 
+Output Parameters:
+
+Returns true - On successful conversion i.e if this conversion event matches any of the reward rule configured on dashboard. 
+
 ##### STEP : 8
 
 Get User Balance
