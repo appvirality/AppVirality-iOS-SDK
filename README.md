@@ -115,4 +115,11 @@ Set User Details
 NSLog(@"user details %d",success);
         }];
 ```
+Input Parameters:
+
+EmailId — Email of the user.
+
+AppUserName — First Name of the user, required to personalize the referral messages.
+
+ProfileImage — User profile picture URL, required to personalize the referral messages.
 
