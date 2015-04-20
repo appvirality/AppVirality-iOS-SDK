@@ -89,8 +89,11 @@ NSLog(@"conversion result %@",conversionResult);
 Input Parameters:
 
 eventName — Install, Signup, Transaction & Any defined Custom Events
+
 transactionValue — Transaction amount
+
 transactionUnit — Transaction currency unit
+
 extrainfo — Custom Info which is stored across the event and will be provided on query of rewards. It is generally used to save transaction information which can be used to cross check later while rewarding. Extra Info is expected in encoded Uri format.
 
 
