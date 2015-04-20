@@ -10,7 +10,7 @@ AppVirality iOS SDK supports iOS V6.0 and above.  Please contact support if you 
 
 ##### STEP : 1
 
-Download the latest iOS SDK from [here https://github.com/appvirality/AppVirality-iOS-SDK] and drop the “includes” folder and “libAppVirality.a” file into your project root. 
+Download the latest iOS SDK from [here] (https://github.com/appvirality/AppVirality-iOS-SDK) and drop the “includes” folder and “libAppVirality.a” file into your project root. 
 
 ##### STEP : 2
 
