@@ -75,5 +75,17 @@ shareMessage - The message that user has shared on social media.
 
 socialActionId - User performed social action Id, this you will get from campaign Details.
 
+##### STEP : 7
+
+Record Conversion Event
+
+```objc
+
+[AppViralitysaveConversionEvent:@{@"eventName":@"Transaction",@"transactionUnit":@"Rs",@"transactionValue":@"560",@"extrainfo":@"orderid:78F6YG"}completion:^(NSDictionary *conversionResult) {
+NSLog(@"conversion result %@",conversionResult);
+}];
+
+```
+
 
 
