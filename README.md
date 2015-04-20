@@ -21,6 +21,8 @@ Import “AppVirality.h” the header file
 ```
 ##### STEP : 3
 
+###### Initialize
+
 Initializing the AppVirality SDK.This has to be done in very begining of your App i.e at -application:didFinishLaunchingWithOptions: method in AppDelegate file.
 
 ```objc
