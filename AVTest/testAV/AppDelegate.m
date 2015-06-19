@@ -7,9 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "AppViralityWelcomeViewController.h"
-#import "AppViralityGrowthHackViewController.h"
-#import "ViewController.h"
+#import "AppVirality.h"
+
 @interface AppDelegate ()
 
 @end
