@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyo-pT-wqN">
+                                <rect key="frame" x="54" y="155" width="180" height="40"/>
+                                <state key="normal" title="Growth Hack">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showGrowthHack:" destination="vXZ-lx-hvc" eventType="touchDown" id="77b-fG-2rx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ET6-CU-9aI">
+                                <rect key="frame" x="54" y="54" width="180" height="40"/>
+                                <state key="normal" title="Update User Details"/>
+                                <connections>
+                                    <action selector="userDetails:" destination="vXZ-lx-hvc" eventType="touchDown" id="AHT-OG-1de"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N36-44-my2">
+                                <rect key="frame" x="54" y="252" width="180" height="40"/>
+                                <state key="normal" title="Mini Notification">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showLaunchBar:" destination="vXZ-lx-hvc" eventType="touchDown" id="RvP-9X-iCV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SP7-6e-k4E">
+                                <rect key="frame" x="54" y="300" width="180" height="40"/>
+                                <state key="normal" title="User Rewards">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getUserRewards:" destination="vXZ-lx-hvc" eventType="touchDown" id="Ux6-Tj-1Vr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emw-DD-dBS">
+                                <rect key="frame" x="54" y="105" width="180" height="40"/>
+                                <state key="normal" title="Signup">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signup:" destination="vXZ-lx-hvc" eventType="touchDown" id="Od0-xK-xyl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eE1-wY-K5E">
+                                <rect key="frame" x="54" y="348" width="180" height="40"/>
+                                <state key="normal" title="Rewards Breakup">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getReferrerReward:" destination="vXZ-lx-hvc" eventType="touchDown" id="9F8-JM-R0H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44l-io-Clp">
+                                <rect key="frame" x="54" y="203" width="180" height="40"/>
+                                <state key="normal" title="Transaction">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="transaction:" destination="vXZ-lx-hvc" eventType="touchDown" id="tWd-mm-lzh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="getReferrerReward" destination="eE1-wY-K5E" id="Fq1-VY-rbW"/>
+                        <outlet property="miniNotification" destination="N36-44-my2" id="E75-Bj-w6Z"/>
+                        <outlet property="showGrowthHack" destination="Fyo-pT-wqN" id="Zr6-OF-rvo"/>
+                        <outlet property="signUp" destination="emw-DD-dBS" id="7ya-Yu-Kq1"/>
+                        <outlet property="transaction" destination="44l-io-Clp" id="TrE-Ze-HPn"/>
+                        <outlet property="updateUserDetails" destination="ET6-CU-9aI" id="CaD-VH-HsE"/>
+                        <outlet property="userRewards" destination="SP7-6e-k4E" id="FSg-rI-CQL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
