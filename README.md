@@ -10,7 +10,7 @@ AppVirality iOS SDK supports iOS V6.0 and above.  Please contact us if you need 
 
 ##### STEP : 1
 
-Download the latest iOS SDK from [here] (https://github.com/appvirality/AppVirality-iOS-SDK) and drop the “includes” folder and “libAppVirality.a” file into your project root. 
+Download the latest iOS SDK from [here] (https://github.com/appvirality/AppVirality-iOS-SDK/archive/master.zip) and drop the “includes” folder and “libAppVirality.a” file into your project root. 
 
 ##### STEP : 2
 
@@ -27,7 +27,10 @@ Initializing the AppVirality SDK.This has to be done in very begining of your Ap
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [AppVirality initWithApiKey:@"YOUR_APP_KEY"];
+    [AppVirality initWithApiKey:@"YOUR-APP-KEY" OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
+        
+        //NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
+    }];
     return YES;
 }
 ```
@@ -40,7 +43,7 @@ Replace “YOUR_APP_KEY” with your App key from Dashboard. You can get your Ap
 This is required if you want to show the welcome screen on first App launch. You can get the referrer details by calling the below code block
 
 ```objc
-[AppVirality getReferrerDetails:^(NSDictionary *referrerDetails) {
+[AppVirality getReferrerDetails:^(NSDictionary *referrerDetails, NSError *error) {
             NSLog(@"ref details %@",referrerDetails);
         }];
 ```
@@ -51,8 +54,8 @@ This is required if you want to show the welcome screen on first App launch. You
 The following callback method will return the referral campaign details. Use the campaign details to show the referral screen to the App users.
 
 ```objc
-[AppVirality showGrowthHack:GrowthHackTypeWordOfMouth completion:^(NSDictionary *campaignDetails) {
-            NSLog(@"growth hack details %@",campaignDetails);
+[AppVirality showGrowthHack:growthHack completion:^(NSDictionary *campaignDetails,NSError*error) {
+                NSLog(@"growth hack details %@",campaignDetails);
         }];
 ```
 campaignDetails includes list of social actions configured on AppVirality Dashboard. Please use the array with name "socialactions" to get the social share messages and unique share links for each social action.
@@ -65,7 +68,7 @@ campaignDetails includes list of social actions configured on AppVirality Dashbo
 Call the below method after successful completion of the social action. i.e after sharing on social media. This records the user social action.
 
 ```objc
-[AppVirality recordSocialActionForGrowthHack:GrowthHackTypeWordOfMouth WithParams:@{@"shareMessage":[[campaignDetails valueForKeyPath:@"socialactions.shareMessage"]firstObject],@"socialActionId":[[campaignDetails valueForKeyPath:@"socialactions.socialActionId"]firstObject]} completion:^(BOOL success) {
+[AppVirality recordSocialActionForGrowthHack:GrowthHackTypeWordOfMouth WithParams:@{@"shareMessage":[[campaignDetails valueForKeyPath:@"socialactions.shareMessage"]firstObject],@"socialActionId":[[campaignDetails valueForKeyPath:@"socialactions.socialActionId"]firstObject]} completion:^(BOOL success,NSError*error) {
                         NSLog(@"social sucess %d",success);
                     }];
 
@@ -83,7 +86,7 @@ socialActionId - User performed social action Id, this you will get from campaig
 
 ```objc
 
-[AppVirality saveConversionEvent:@{@"eventName":@"Transaction",@"transactionUnit":@"Rs",@"transactionValue":@"560",@"extrainfo":@"orderid:78F6YG"}completion:^(NSDictionary *conversionResult) {
+[AppVirality saveConversionEvent:@{@"eventName":@"Transaction",@"transactionUnit":@"Rs",@"transactionValue":@"560",@"extrainfo":@"orderid:78F6YG"} completion:^(NSDictionary *conversionResult,NSError *error) {
 NSLog(@"conversion result %@",conversionResult);
 }];
 
@@ -107,8 +110,11 @@ Returns true - On successful conversion i.e if this conversion event matches any
 ###### Get User Balance
 
 ```objc
-[AppVirality getUserBalance:GrowthHackTypeWordOfMouthcompletion:^(NSDictionary *userInfo) {
-NSLog(@" user balance %@",userInfo);
+[AppVirality getUserBalance:self.growthHack completion:^(NSDictionary *userInfo,NSError*error) {
+                self.userPoints = [(NSArray*)[userInfo valueForKey:@"userpoints"] firstObject];
+                // List of friends installed through the referral link
+                self.referredusers = [userInfo valueForKey:@"referredusers"];
+                NSLog(@" user balance %@",userInfo);
         }];
 ```
 ###### Output  Parameters:
@@ -126,9 +132,11 @@ NSLog(@" user balance %@",userInfo);
 ###### Set User Details
 
 ```objc
-[AppVirality setUserDetails:@{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pic.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"true"}completion:^(BOOL success) {
-NSLog(@"user details %d",success);
-        }];
+
+NSDictionary * userDetails = @{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pic.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"true"};
+
+[AppVirality setUserDetails:userDetails];
+        
 ```
 ###### Input Parameters:
 
