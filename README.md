@@ -158,7 +158,7 @@ Phone — User phone number.
 
 isExistingUser — Set this as True, if you identify the user as existing user(this is useful if you don't want to reward existing users).
 
-### Testing Referral Program in iOS
+### Testing Referral Program on iOS
 
 In order to test the Referral program on iOS, the first step would be register your iOS device in test Devices.
 
