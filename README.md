@@ -84,6 +84,8 @@ socialActionId - User performed social action Id, this you will get from campaig
 
 ###### Record Conversion Event
 
+Before recording any conversion event, please make sure to update the user details(atleast EmailID) to AppVirality [SETP 9](https://github.com/appvirality/AppVirality-iOS-SDK/blob/master/README.md#step--9). User details are required to reward the user.
+
 ```objc
 
 [AppVirality saveConversionEvent:@{@"eventName":@"Transaction",@"transactionUnit":@"Rs",@"transactionValue":@"560",@"extrainfo":@"orderid:78F6YG"} completion:^(NSDictionary *conversionResult,NSError *error) {
