@@ -158,3 +158,19 @@ Phone — User phone number.
 
 isExistingUser — Set this as True, if you identify the user as existing user(this is useful if you don't want to reward existing users).
 
+### Testing Referral Program in iOS
+
+In order to test the Referral program on iOS, the first step would be register your iOS device in test Devices.
+
+#### Register iOS device as Test Devices
+
+1) Add the key "AppViralityDebug" in your info.plist file and set the value "YES". 
+2) Execute "registerAsDebugDevice" callback method in App after clicking on "Add Test Device" button on Dashboard(i.e. Select "Test Devices" from Dashboard Navigation panel and click on "Add Test Device" button)
+
+OR
+
+If you are using [Sample App](https://github.com/appvirality/AppVirality-iOS-SDK/tree/master/AVTest) provided by AppVirality, you an simply open the App on the device and shake it twice to add the device in Test Devices list.
+
+3)Once you Add the device in Test Devices section, follow the Testing guide provided [here](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs)
+
+
