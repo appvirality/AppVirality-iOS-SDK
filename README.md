@@ -2,7 +2,9 @@
 
 Register your iOS application at AppVirality.com and copy the AppKey from dashboard.
 
-<i>NOTE</i>: <b>Don't Register Again,</b> if you have already registered your Android Application and want to run the same referral campaign on iOS App as well. The same Android AppKey can be used for iOS app as well.
+<i>NOTE</i>: <b>Don't Register Again,</b> if you have already registered your Android Application and want to run the same referral campaign on iOS App as well. 
+
+The same Android AppKey can be used for iOS app as well.
 
 ![Alt text](https://github.com/appvirality/appvirality-sdk-android/blob/master/images/App-key-obtaining.jpg?raw=true)
 
