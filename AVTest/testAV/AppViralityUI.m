@@ -65,7 +65,7 @@
 + (void)showWelcomeScreenFromController:(UIViewController*)viewController
 {
     [AppVirality getReferrerDetails:^(NSDictionary *referrerDetails,NSError* error) {
-        NSLog(@"iski %@ %@",[error valueForKey:NSLocalizedFailureReasonErrorKey],referrerDetails);
+        //NSLog(@"iski %@ %@",[error valueForKey:NSLocalizedFailureReasonErrorKey],referrerDetails);
         AppViralityWelcomeViewController * welcomeVC = [[AppViralityWelcomeViewController alloc] initWithReferrerDetails:referrerDetails];
         if (welcomeVC) {
             UINavigationController * navVC = [[UINavigationController alloc] initWithRootViewController:welcomeVC];

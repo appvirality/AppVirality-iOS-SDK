@@ -503,7 +503,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * reuseIdentifier = [@"reuseIdentifier" stringByAppendingString:[NSString stringWithFormat:@"%ld",(long)indexPath.section]];
-    NSLog(@"%ld %ld %@",(long)indexPath.section,(long)indexPath.row,reuseIdentifier);
+    //NSLog(@"%ld %ld %@",(long)indexPath.section,(long)indexPath.row,reuseIdentifier);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
 
