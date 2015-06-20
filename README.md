@@ -165,7 +165,14 @@ In order to test the Referral program on iOS, the first step would be register y
 #### Register iOS device as Test Device
 
 1) Add the key "AppViralityDebug" in your info.plist file and set the value "YES". 
+
 2) Execute "registerAsDebugDevice" callback method in App after clicking on "Add Test Device" button on Dashboard(i.e. Select "Test Devices" from Dashboard Navigation panel and click on "Add Test Device" button)
+
+```objc
+[AppVirality registerAsDebugDevice:^(BOOL success, NSError *error) {
+        NSLog(@"Register Test Device Response: %d ", success);
+    }];
+```
 
 OR
 
