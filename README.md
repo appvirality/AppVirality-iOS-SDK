@@ -1,8 +1,8 @@
 ### AppVirality iOS SDK Integration steps
 
-Register your iOS Application at AppVirality.com and copy the AppKey from Dashboard.
+Register your iOS application at AppVirality.com and copy the AppKey from dashboard.
 
-<i>NOTE</i>: <b>Don't Register Again,</b> If you have already registered your Android Application and want to run the same referral campaign on iOS App. You have to use the same Android AppKey for iOS App as well.
+<i>NOTE</i>: <b>Don't Register Again,</b> if you have already registered your Android Application and want to run the same referral campaign on iOS App as well. The same Android AppKey can be used for iOS app as well.
 
 ![Alt text](https://github.com/appvirality/appvirality-sdk-android/blob/master/images/App-key-obtaining.jpg?raw=true)
 
@@ -23,7 +23,7 @@ Import “AppVirality.h” the header file
 
 ###### Initialize
 
-Initializing the AppVirality SDK.This has to be done in very begining of your App i.e at -application:didFinishLaunchingWithOptions: method in AppDelegate file.
+Initializing the AppVirality SDK has to be done at the very beginning of your App i.e. at  -application:didFinishLaunchingWithOptions: method in AppDelegate file.
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -34,13 +34,13 @@ Initializing the AppVirality SDK.This has to be done in very begining of your Ap
     return YES;
 }
 ```
-Replace “YOUR_APP_KEY” with your App key from Dashboard. You can get your App key from AppVirality Dashboard → AppDetails page.
+Replace “YOUR_APP_KEY” with your App key from dashboard. You can get your App key from AppVirality Dashboard → App Details page.
 
 ##### STEP : 4
 
 ###### Getting Referrer Details
 
-This is required if you want to show the welcome screen on first App launch. You can get the referrer details by calling the below code block
+This is required if you want to show the welcome screen on the first App launch. You can get the referrer details by calling the below code block
 
 ```objc
 [AppVirality getReferrerDetails:^(NSDictionary *referrerDetails, NSError *error) {
@@ -49,7 +49,7 @@ This is required if you want to show the welcome screen on first App launch. You
 ```
 ##### STEP : 5
 
-###### Show GrowthHack
+###### Show Growth Hack
 
 The following callback method will return the referral campaign details. Use the campaign details to show the referral screen to the App users.
 
@@ -76,9 +76,9 @@ Call the below method after successful completion of the social action. i.e afte
 
 ###### Input Parameters:
 
-shareMessage - The message that user has shared on social media.
+shareMessage - It is the message that the user has shared on social media.
 
-socialActionId - User performed social action Id, this you will get from campaign Details.
+socialActionId - It is the user performed social action id, which can be obtained from campaign details.
 
 ##### STEP : 7
 
@@ -97,7 +97,7 @@ NSLog(@"conversion result %@",conversionResult);
 
 eventName — Install, Signup, Transaction & Any defined Custom Events
 
-transactionValue — Transaction amount
+transactionValue — Amount of the transaction.
 
 transactionUnit — Transaction currency unit
 
@@ -105,7 +105,7 @@ extrainfo — Custom Info which is stored across the event and will be provided 
 
 ###### Output Parameters:
 
-Returns true - On successful conversion i.e if this conversion event matches any of the reward rule configured on dashboard. 
+Returns true - On successful conversion i.e if this conversion event matches any of the reward rule configured on the dashboard. 
 
 ##### STEP : 8
 
@@ -142,34 +142,34 @@ NSDictionary * userDetails = @{@"EmailId":@"mymail@test.com",@"AppUserName":@"Cu
 ```
 ###### Input Parameters:
 
-EmailId — Email of the user.
+EmailId — Email id of the user.
 
-AppUserName — First Name of the user, required to personalize the referral messages.
+AppUserName — First name of the user, required to personalize the referral messages.
 
 ProfileImage — User profile picture URL, required to personalize the referral messages.
 
-UserIdInstore — ID of the user in your App(helps to identify users on dashboard as you do in your app).
+UserIdInstore — ID of the user in your App (helps to identify users on dashboard as you do in your app).
 
-city — City of the User Location.
+city — defines the city of the user.
 
-country — Country of the User Location.
+country — defines the country of the user.
 
-state — State of the User Location.
+state — defines the state of the user location.
 
-Phone — User phone number.
+Phone — contact number of the user.
 
 isExistingUser — Set this as True, if you identify the user as existing user(this is useful if you don't want to reward existing users).
 
 ### Testing Referral Program on iOS
 
-In order to test the Referral program on iOS, the first step would be register your iOS device in test Devices.
+In order to test the Referral program on iOS, the first step would be to register your iOS devices as test devices.
 
 #### Register iOS device as Test Device
 
 1) Add the key "AppViralityDebug" in your info.plist file and set the value "YES". 
 
-2) Click on "Add Test Device" button on Dashboard to keep it in listen mode.
-(i.e. Select "Test Devices" item from Dashboard Navigator and click on "Add Test Device" button)
+2) Click on "Add Test Device" button on dashboard to keep it in listen mode.
+(i.e. Select "Test Devices" item from dashboard navigator and click on "Add Test Device" button)
 
 3) Execute "registerAsDebugDevice" callback method to register the device.
 
@@ -183,7 +183,7 @@ OR
 
 If you are using [Sample App](https://github.com/appvirality/AppVirality-iOS-SDK/tree/master/AVTest) provided by AppVirality, you an simply open the App on the device and shake it twice to add the device in Test Devices list.
 
-4)Once you Add the device in Test Devices, follow the section "Let’s Start Real Testing" in the Testing guide provided [here](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs#lets-start-real-testing)
+4) Once you Add the device in Test Devices, follow the section "Let’s Start Real Testing" in the Testing guide  [provided here](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs#lets-start-real-testing)
 
 <H3>Need more Customization:</H3>
 
