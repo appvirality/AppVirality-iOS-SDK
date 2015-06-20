@@ -183,4 +183,15 @@ If you are using [Sample App](https://github.com/appvirality/AppVirality-iOS-SDK
 
 4)Once you Add the device in Test Devices section, follow the Testing guide provided [here](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs)
 
+<H3>Need more Customization:</H3>
+
+Please have a look at our [Wiki page](https://github.com/appvirality/appvirality-sdk-android/wiki)
+
+1. [Getting Started With Appvirality iOS SDK Integration](https://github.com/appvirality/AppVirality-iOS-SDK)
+2. [AppVirality API for referral Growth Hack](https://github.com/appvirality/appvirality-sdk-android/wiki/AppVirality-API)
+3. [How to Add Test Devices & Test Referral Program](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs)
+4. [Using Custom Domain | Custom Share URL](https://github.com/appvirality/appvirality-sdk-android/wiki/Using-Custom-Domain)
+5. [Optional] [To Whom and When to Show Growth Hack](https://github.com/appvirality/appvirality-sdk-android/wiki/To-Whom-and-When-to-Show-Growth-Hack)
+6. [Optional] [Reward Notifications or Web-hook Configuration](https://github.com/appvirality/appvirality-sdk-android/wiki/Reward-Notifications)
+
 
