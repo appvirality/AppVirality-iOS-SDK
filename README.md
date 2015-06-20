@@ -181,7 +181,7 @@ OR
 
 If you are using [Sample App](https://github.com/appvirality/AppVirality-iOS-SDK/tree/master/AVTest) provided by AppVirality, you an simply open the App on the device and shake it twice to add the device in Test Devices list.
 
-4)Once you Add the device in Test Devices section, follow the Testing guide provided [here](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs#lets-start-real-testing)
+4)Once you Add the device in Test Devices, follow the section "Let’s Start Real Testing" in the Testing guide provided [here](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs#lets-start-real-testing)
 
 <H3>Need more Customization:</H3>
 
