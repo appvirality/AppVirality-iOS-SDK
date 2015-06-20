@@ -166,7 +166,10 @@ In order to test the Referral program on iOS, the first step would be register y
 
 1) Add the key "AppViralityDebug" in your info.plist file and set the value "YES". 
 
-2) Execute "registerAsDebugDevice" callback method in App after clicking on "Add Test Device" button on Dashboard(i.e. Select "Test Devices" from Dashboard Navigation panel and click on "Add Test Device" button)
+2) Click on "Add Test Device" button on Dashboard to keep it in listen mode.
+(i.e. Select "Test Devices" item from Dashboard Navigator and click on "Add Test Device" button)
+
+3) Execute "registerAsDebugDevice" callback method to register the device.
 
 ```objc
 [AppVirality registerAsDebugDevice:^(BOOL success, NSError *error) {
@@ -178,6 +181,6 @@ OR
 
 If you are using [Sample App](https://github.com/appvirality/AppVirality-iOS-SDK/tree/master/AVTest) provided by AppVirality, you an simply open the App on the device and shake it twice to add the device in Test Devices list.
 
-3)Once you Add the device in Test Devices section, follow the Testing guide provided [here](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs)
+4)Once you Add the device in Test Devices section, follow the Testing guide provided [here](https://github.com/appvirality/appvirality-sdk-android/wiki/Testing-Your-Referral-Programs)
 
 
