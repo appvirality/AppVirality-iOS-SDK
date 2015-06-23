@@ -344,15 +344,17 @@
     
     activityVC.excludedActivityTypes = excludeActivities;
     [activityVC setCompletionHandler:^(NSString *activityType, BOOL completed) {
-        if([activityType isEqualToString: UIActivityTypeMail]){
-            [self recordSocialActionForActionType:@"Mail"];
-        }else if([activityType isEqualToString: UIActivityTypePostToFacebook]){
-            [self recordSocialActionForActionType:@"Facebook"];
-        }else if([activityType isEqualToString: UIActivityTypePostToTwitter]){
-            [self recordSocialActionForActionType:@"Twitter"];
-        }else
-        {
-            [self recordSocialActionForActionType:@"CustomLink"];
+        if (completed) {
+            if([activityType isEqualToString: UIActivityTypeMail]){
+                [self recordSocialActionForActionType:@"Mail"];
+            }else if([activityType isEqualToString: UIActivityTypePostToFacebook]){
+                [self recordSocialActionForActionType:@"Facebook"];
+            }else if([activityType isEqualToString: UIActivityTypePostToTwitter]){
+                [self recordSocialActionForActionType:@"Twitter"];
+            }else
+            {
+                [self recordSocialActionForActionType:@"CustomLink"];
+            }
         }
         
     }];

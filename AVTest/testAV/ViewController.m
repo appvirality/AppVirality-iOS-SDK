@@ -85,9 +85,9 @@
     UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Please enter value" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     av.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     [[av textFieldAtIndex:1] setSecureTextEntry:NO];
-    [[av textFieldAtIndex:0] setPlaceholder:@"Name"];
+    [[av textFieldAtIndex:0] setPlaceholder:@"Email"];
     
-    [[av textFieldAtIndex:1] setPlaceholder:@"Email"];
+    [[av textFieldAtIndex:1] setPlaceholder:@"Name"];
     av.tag = 53;
     [av show];
 }
