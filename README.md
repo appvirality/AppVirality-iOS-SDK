@@ -162,6 +162,8 @@ Phone — contact number of the user.
 
 isExistingUser — Set this as True, if you identify the user as existing user(this is useful if you don't want to reward existing users).
 
+<b>NOTE:</b>  Please use the [Sample Application](https://github.com/appvirality/AppVirality-iOS-SDK/tree/master/AVTest) to see the above callbacks in action.
+
 ### Testing Referral Program on iOS
 
 In order to test the Referral program on iOS, the first step would be to register your iOS devices as test devices.
