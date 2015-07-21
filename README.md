@@ -162,6 +162,8 @@ Phone — contact number of the user.
 
 isExistingUser — Set this as True, if you identify the user as existing user(this is useful if you don't want to reward existing users).
 
+<b> NOTE: Set "isExistingUser" property only on first App launch i.e. only once. On subsequent launches please don't set this property. At any point of time if you set this property to "True" all the existing user rewards will be set to "Rejected" state.Hence please use this property carefully.</b>
+
 <b>NOTE:</b>  Please use the [Sample Application](https://github.com/appvirality/AppVirality-iOS-SDK/tree/master/AVTest) to see the above callbacks in action.
 
 ### Testing Referral Program on iOS
