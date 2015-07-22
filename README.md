@@ -86,6 +86,8 @@ socialActionId - It is the user performed social action id, which can be obtaine
 
 ###### Record Conversion Event
 
+<b> NOTE:</b> Please make sure that the "setUserDetails" get called before calling "saveConversionEvent".
+
 Before recording any conversion event, please make sure to update the user details(atleast EmailID) to AppVirality [SETP 9](https://github.com/appvirality/AppVirality-iOS-SDK/blob/master/README.md#step--9). User details are required to reward the user.
 
 ```objc
@@ -135,7 +137,7 @@ Returns true - On successful conversion i.e if this conversion event matches any
 
 ###### Set User Details
 
-NOTE: Please make sure that the "setUserDetails" get called before calling "saveConversionEvent".
+<b> NOTE:</b> Please make sure that the "setUserDetails" get called before calling "saveConversionEvent".
 
 ```objc
 
