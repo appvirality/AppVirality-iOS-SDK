@@ -135,6 +135,8 @@ Returns true - On successful conversion i.e if this conversion event matches any
 
 ###### Set User Details
 
+NOTE: Please make sure that the "setUserDetails" get called before calling "saveConversionEvent".
+
 ```objc
 
 NSDictionary * userDetails = @{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pic.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"true"};
