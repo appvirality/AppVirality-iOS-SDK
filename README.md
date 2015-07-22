@@ -135,7 +135,7 @@ Returns true - On successful conversion i.e if this conversion event matches any
 
 ###### Set User Details
 
-<b> NOTE:</b> Please make sure that the "setUserDetails" get called before calling "saveConversionEvent".
+<b> NOTE:</b> Please set the user details before calling "saveConversionEvent" in step 7.
 
 ```objc
 
