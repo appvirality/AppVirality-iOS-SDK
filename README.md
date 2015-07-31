@@ -139,7 +139,7 @@ Returns true - On successful conversion i.e if this conversion event matches any
 
 ```objc
 
-NSDictionary * userDetails = @{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pic.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"true"};
+NSDictionary * userDetails = @{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pics.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"false"};
 
 [AppVirality setUserDetails:userDetails];
         
