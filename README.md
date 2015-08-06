@@ -4,7 +4,7 @@ Register your iOS application at AppVirality.com and copy the AppKey from dashbo
 
 <i>NOTE</i>: <b>Don't Register Again,</b> if you have already registered your Android Application and want to run the same referral campaign on iOS App as well. 
 
-<i>NOTE</i>: AppVirality iOS SDK supports iPhone simulator 5S or higher & from iPhone 4s device and higher. 
+<i>NOTE</i>: AppVirality iOS SDK supports iPhone simulator 5S or higher & iPhone 4s device and higher. 
 
 The same Android AppKey can be used for iOS app as well.
 
