@@ -13,7 +13,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *updateUserDetails;
 @property (nonatomic, weak) IBOutlet UIButton *signUp;
 @property (nonatomic, weak) IBOutlet UIButton *showGrowthHack;
-@property (nonatomic, weak) IBOutlet UIButton *transaction,*miniNotification,*userRewards,*getReferrerReward;
+@property (nonatomic, weak) IBOutlet UIButton *transaction,*miniNotification,*userRewards,*getReferrerReward,*getUserCoupons;
 
 
 -(IBAction)showGrowthHack:(id)sender;
@@ -23,5 +23,7 @@
 -(IBAction)showLaunchBar:(id)sender;
 -(IBAction)getUserRewards:(id)sender;
 -(IBAction)getReferrerReward:(id)sender;
+-(IBAction)getUserCoupons:(id)sender;
+
 @end
 

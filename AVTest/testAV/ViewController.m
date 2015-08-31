@@ -48,6 +48,9 @@
     self.getReferrerReward.layer.borderWidth = 1;
     self.getReferrerReward.layer.borderColor = self.getReferrerReward.titleLabel.textColor.CGColor;
     
+    self.getUserCoupons.layer.cornerRadius = 5;
+    self.getUserCoupons.layer.borderWidth = 1;
+    self.getUserCoupons.layer.borderColor = self.getUserCoupons.titleLabel.textColor.CGColor;
     
     
     //    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"AVapiKey"]);
@@ -77,6 +80,7 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:@"conversionResult" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         NSLog(@"conversion Event result %@",[note valueForKeyPath:@"userInfo.result"]);
     }];
+    [self registerForRemoteNotifications];
 }
 
 
@@ -107,6 +111,21 @@
     [av show];
 }
 
+- (void)registerForRemoteNotifications{
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else{
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    }
+#else
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+#endif
+}
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -125,8 +144,11 @@
     //Update UserDetails
     if (actionSheet.tag==53) {
         if (buttonIndex!=0&&(![[actionSheet textFieldAtIndex:0].text isEqualToString:@""]&&(![[actionSheet textFieldAtIndex:1].text isEqualToString:@""]))) {
-            NSDictionary * userDetails = @{@"EmailId":[actionSheet textFieldAtIndex:0].text,@"AppUserName":[actionSheet textFieldAtIndex:1].text,@"ProfileImage":@"http://www.hellomagazine.com/imagenes/profiles/angelina-jolie/5727-new-angelina-profile-pic.jpg",@"UserIdInstore":@"av1",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210"};
-            [AppVirality setUserDetails:userDetails];
+            NSDictionary * userDetails = @{@"EmailId":[actionSheet textFieldAtIndex:0].text,@"AppUserName":[actionSheet textFieldAtIndex:1].text,@"ProfileImage":@"https://growth.appvirality.com/Images/no_profileimage.jpg",@"UserIdInstore":@"av1",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"pushDeviceToken":@"mydevicetoken"};
+
+            [AppVirality setUserDetails:userDetails Oncompletion:^(BOOL success, NSError *error) {
+                NSLog(@"User Details update Status %d", success);
+            }];
             
         }
     }
@@ -144,7 +166,7 @@
     [AppViralityUI showLaunchBar:GrowthHackTypeWordOfMouth FromController:self];
 
 }
-// List all the user rewards
+// Get user Rewards & the detailed break up
 -(IBAction)getUserRewards:(id)sender
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -152,12 +174,12 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
-        NSLog(@"User Rewards %@", rewards);
+        NSLog(@"User Rewards Breakup %@", rewards);
     }];
     
 }
 
-// Get the list of all the rewards which are yet to be rewarded
+// List pending rewards earned as Referrer
 -(IBAction)getReferrerReward:(id)sender
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -165,9 +187,34 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
-        NSLog(@"Referrer Reward Details %@", rewards);
+        NSLog(@"List pending rewards earned as Referrer %@", rewards);
     }];
     
+}
+
+// Get aggriaged user Balance & Friends List
+-(IBAction)getUserBalance:(id)sender
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [AppVirality getUserBalance:GrowthHackTypeWordOfMouth completion:^(NSDictionary *userInfo, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+        NSLog(@"Aggregated user Balance & Friends List %@", userInfo);
+    }];
+    
+}
+// Get the list of user coupons
+-(IBAction)getUserCoupons:(id)sender
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [AppVirality getUserCoupons:^(NSDictionary *coupons, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+        NSLog(@"User coupons list %@", coupons);
+    }];
+
 }
 -(void)viewDidAppear:(BOOL)animated
 {
