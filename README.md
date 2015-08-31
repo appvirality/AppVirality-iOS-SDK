@@ -141,10 +141,11 @@ Returns true - On successful conversion i.e if this conversion event matches any
 
 ```objc
 
-NSDictionary * userDetails = @{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pics.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"false"};
+NSDictionary * userDetails = @{@"EmailId":@"mymail@test.com",@"AppUserName":@"CustomerName",@"ProfileImage":@"http://www.pics.com/profile.png",@"UserIdInstore":@"78903",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"isExistingUser":@"false",@"pushDeviceToken":@"YOUR-DEVICE-TOKEN"};
 
-[AppVirality setUserDetails:userDetails];
-        
+[AppVirality setUserDetails:userDetails Oncompletion:^(BOOL success, NSError *error) {
+                NSLog(@"User Details update Status %d", success);
+}];        
 ```
 ###### Input Parameters:
 
@@ -163,6 +164,8 @@ country — defines the country of the user.
 state — defines the state of the user location.
 
 Phone — contact number of the user.
+
+pushDeviceToken - Your device push token to receive push notifications.
 
 isExistingUser — Set this as True, if you identify the user as existing user(this is useful if you don't want to reward existing users).
 
