@@ -91,6 +91,7 @@
                 self.textField.delegate = self;
                 self.textField.borderStyle = UITextBorderStyleRoundedRect;
                 self.textField.center = CGPointMake(SCREEN_WIDTH/2, self.textField.center.y);
+                self.textField.placeholder = @"Email";
                 [self.view addSubview:self.textField];
                 self.claimButton.frame = CGRectMake(0, CGRectGetMaxY(self.textField.frame)+10, 100, 50);
                 [self.claimButton setTitle:@"Claim" forState:UIControlStateNormal];
@@ -147,15 +148,25 @@
 }
 -(void)claimButtonClicked:(id)sender
 {
+    if ([self.textField.text isEqualToString:@""]) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please enter the email" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [AppVirality saveConversionEvent:@{@"eventName":@"Install"} completion:^(NSDictionary *conversionResult,NSError *error) {
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        if (conversionResult&&[conversionResult objectForKey:@"success"]&&![[conversionResult valueForKeyPath:@"friend.rewardid"] isEqual:[NSNull null]]) {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:[[conversionResult valueForKey:@"success"] boolValue]?@"Hurray..! you will receive your reward shortly":@"Reward is on for first time users, but you can still earn by referring your friends" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-           
-        }
+    // update user Email before sending the conversion event
+    [AppVirality setUserDetails:@{@"EmailId":self.textField.text} Oncompletion:^(BOOL success, NSError *error) {
+        // Send install conversion event
+        [AppVirality saveConversionEvent:@{@"eventName":@"Install"} completion:^(NSDictionary *conversionResult,NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            if (conversionResult&&[conversionResult objectForKey:@"success"]&&![[conversionResult valueForKeyPath:@"friend.rewardid"] isEqual:[NSNull null]]) {
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:[[conversionResult valueForKey:@"success"] boolValue]?@"Hurray..! you will receive your reward shortly":@"Reward is on for first time users, but you can still earn by referring your friends" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                
+            }
+        }];
     }];
+   
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

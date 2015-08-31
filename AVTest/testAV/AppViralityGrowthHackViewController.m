@@ -480,9 +480,12 @@
         if (!self.terms) {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             [AppVirality getTerms:self.growthHack completion:^(NSDictionary *userTerms,NSError*error) {
+                NSLog(@"user terms%@",userTerms);
                 if ([userTerms objectForKey:@"message"]) {
                     self.terms = [userTerms valueForKey:@"message"];
-                }
+                    [self.tableView beginUpdates];
+                    [self.tableView endUpdates];
+                  }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:tag] withRowAnimation:UITableViewRowAnimationAutomatic];
