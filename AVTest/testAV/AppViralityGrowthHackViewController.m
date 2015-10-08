@@ -502,9 +502,11 @@
         if (tag==1&&self.referredusers.count==0) {
             return;
         }
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:tag]
-                         atScrollPosition:UITableViewScrollPositionTop
-                                 animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:tag]
+                                  atScrollPosition:UITableViewScrollPositionTop
+                                          animated:YES];
+        });
     }
 }
 
