@@ -483,8 +483,11 @@
                 NSLog(@"user terms%@",userTerms);
                 if ([userTerms objectForKey:@"message"]) {
                     self.terms = [userTerms valueForKey:@"message"];
-                    [self.tableView beginUpdates];
-                    [self.tableView endUpdates];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView beginUpdates];
+                        [self.tableView endUpdates];
+                    });
+                    
                   }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
