@@ -144,7 +144,7 @@
     //Update UserDetails
     if (actionSheet.tag==53) {
         if (buttonIndex!=0&&(![[actionSheet textFieldAtIndex:0].text isEqualToString:@""]&&(![[actionSheet textFieldAtIndex:1].text isEqualToString:@""]))) {
-            NSDictionary * userDetails = @{@"EmailId":[actionSheet textFieldAtIndex:0].text,@"AppUserName":[actionSheet textFieldAtIndex:1].text,@"ProfileImage":@"https://growth.appvirality.com/Images/no_profileimage.jpg",@"UserIdInstore":@"av1",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210",@"pushDeviceToken":@"mydevicetoken"};
+            NSDictionary * userDetails = @{@"EmailId":[actionSheet textFieldAtIndex:0].text,@"AppUserName":[actionSheet textFieldAtIndex:1].text,@"ProfileImage":@"https://growth.appvirality.com/Images/no_profileimage.jpg",@"UserIdInstore":@"av1",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210"};
 
             [AppVirality setUserDetails:userDetails Oncompletion:^(BOOL success, NSError *error) {
                 NSLog(@"User Details update Status %d", success);

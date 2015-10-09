@@ -49,7 +49,7 @@ static void onUncaughtException(NSException * exception)
                            stringByReplacingOccurrencesOfString:@">" withString:@""]
                           stringByReplacingOccurrencesOfString: @" " withString: @""];
     
-    [AppVirality setUserDetails:@{@"pushToken":devToken} Oncompletion:^(BOOL success, NSError *error) {
+    [AppVirality setUserDetails:@{@"pushDeviceToken":devToken} Oncompletion:^(BOOL success, NSError *error) {
         
     }];
     NSLog(@"My token is: %@", devToken);
