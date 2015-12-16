@@ -32,9 +32,9 @@ Initializing the AppVirality SDK has to be done at the very beginning of your Ap
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Enable cookie based attribution to achieve 100% attribution
-    [AppVirality attributeUserBasedonCookie:@"71f683f4dab74cd3af5aa44f01768219" OnCompletion:^(BOOL success, NSError *error) {
+    [AppVirality attributeUserBasedonCookie:@"YOUR-APP-KEY" OnCompletion:^(BOOL success, NSError *error) {
         // Init AppVirality SDK
-        [AppVirality initWithApiKey:@"71f683f4dab74cd3af5aa44f01768219" OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
+        [AppVirality initWithApiKey:@"YOUR-APP-KEY" OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
             
             //NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
             //NSLog(@"User has Referrer %@", referrerDetails);
