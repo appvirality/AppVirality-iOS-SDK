@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
     GrowthHackTypeWordOfMouth ,
@@ -33,6 +34,9 @@ typedef enum : NSUInteger {
 + (void)getUserRewards:(void (^)(NSDictionary *rewards,NSError *error))completion;
 + (void)getUserCoupons:(void (^)(NSDictionary *coupons,NSError *error))completion;
 +(void)logout;
++(void)attributeUserBasedonCookie:(NSString *)apiKey OnCompletion:(void(^)(BOOL success,NSError *error))completion;
++(void)getReferrerDetailsDirect:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
+
 @end
 
 

@@ -52,8 +52,9 @@
         }
     }];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"showGrowthHack" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+   __block id observer =  [[NSNotificationCenter defaultCenter] addObserverForName:@"showGrowthHack" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         if (![statsId isEqual:[NSNull null]]) {
+            [[NSNotificationCenter defaultCenter] removeObserver:observer];
             [AppVirality recordImpressionsForGrowthHack:GrowthHackTypeWordOfMouth WithParams:[NSDictionary dictionaryWithObjectsAndKeys:@"true",@"click",@"true",@"impression",statsId,@"CampaignStatsId", nil] completion:^(NSDictionary *response,NSError * error) {
                 
             }];
@@ -98,12 +99,14 @@
         }
     }];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"showGrowthHack" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+   __block id observer = [[NSNotificationCenter defaultCenter] addObserverForName:@"showGrowthHack" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         if (![statsId isEqual:[NSNull null]]) {
+            [[NSNotificationCenter defaultCenter] removeObserver:observer];
             [AppVirality recordImpressionsForGrowthHack:GrowthHackTypeWordOfMouth WithParams:[NSDictionary dictionaryWithObjectsAndKeys:@"true",@"click",@"true",@"impression",statsId,@"CampaignStatsId", nil] completion:^(NSDictionary *response, NSError * error) {
                 
             }];
         }
+
         [self showGrowthHack:growthHack FromController:viewController];
     }];
     

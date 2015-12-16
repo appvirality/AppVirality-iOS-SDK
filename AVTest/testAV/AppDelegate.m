@@ -23,10 +23,14 @@ static void onUncaughtException(NSException * exception)
     NSSetUncaughtExceptionHandler(&onUncaughtException);
     
     // Override point for customization after application launch.
-    // Init AppVirality SDK
-    [AppVirality initWithApiKey:@"YOUR-APP-KEY" OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
-        
-       // NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
+	// Allow Cookiebased attribution 
+    [AppVirality attributeUserBasedonCookie:@"YOUR-APP-KEY" OnCompletion:^(BOOL success, NSError *error) {
+        // Init AppVirality SDK
+		[AppVirality initWithApiKey:@"YOUR-APP-KEY" OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
+            
+            //NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
+            //NSLog(@"User has Referrer %@", referrerDetails);
+        }];
     }];
     return YES;
 }
