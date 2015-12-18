@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "AppVirality.h"
+@import SafariServices;
+
 @interface AppDelegate ()
 
 @end
