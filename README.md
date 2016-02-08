@@ -170,7 +170,7 @@ state — defines the state of the user location.
 
 Phone — contact number of the user.
 
-pushDeviceToken - Your device push token to receive push notifications.
+pushDeviceToken - Your device push token to receive push notifications. 
 
 isExistingUser — Set this as True, if you identify the user as existing user(this is useful if you don't want to reward existing users).
 
