@@ -15,10 +15,14 @@
 @property (strong) UIImageView * ProfileImageView;
 @property (strong) UIButton * closeButton;
 @property (strong) UITextField * textField;
+@property (strong) UITextField * txtReferrerCode;
+
 @end
 
 
 @implementation AppViralityWelcomeViewController
+
+NSDictionary * referrerInfo;
 
 -(id)initWithReferrerDetails:(NSDictionary *)referrerDetails
 {
@@ -30,6 +34,8 @@
     }
     self = [self init];
     if (self) {
+        
+        referrerInfo = referrerDetails;
 
         unsigned color = [AppViralityUIUtility checkAndGetColorAtKey:@"CampaignBGColor" InDictionary:referrerDetails];
         self.view.backgroundColor =(color==0)?self.view.backgroundColor:UIColorFromRGB(color);
@@ -87,18 +93,61 @@
 
         if ([referrerDetails objectForKey:@"FriendRewardEvent"]) {
             if ([[referrerDetails valueForKey:@"FriendRewardEvent"] isEqualToString:@"Install"]) {
-                self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.messageLabel.frame)+20, 140, 40)];
+                self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.messageLabel.frame)+20, 240, 40)];
                 self.textField.delegate = self;
                 self.textField.borderStyle = UITextBorderStyleRoundedRect;
                 self.textField.center = CGPointMake(SCREEN_WIDTH/2, self.textField.center.y);
                 self.textField.placeholder = @"Email";
                 [self.view addSubview:self.textField];
-                self.claimButton.frame = CGRectMake(0, CGRectGetMaxY(self.textField.frame)+10, 100, 50);
+                
+                self.txtReferrerCode = [[UITextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.textField.frame)+15, 240, 40)];
+                self.txtReferrerCode.delegate = self;
+                self.txtReferrerCode.borderStyle = UITextBorderStyleRoundedRect;
+                self.txtReferrerCode.center = CGPointMake(SCREEN_WIDTH/2, self.txtReferrerCode.center.y);
+                self.txtReferrerCode.placeholder = @"Enter Referral Code";
+                [self.view addSubview:self.txtReferrerCode];
+                
+                if ([referrerDetails objectForKey:@"ReferrerCode"]) {
+                    self.txtReferrerCode.text = [referrerDetails objectForKey:@"ReferrerCode"];
+                }
+                
+                if(([referrerInfo objectForKey:@"attributionSetting"] && [[referrerInfo objectForKey:@"attributionSetting"] integerValue] == 0) ||
+                   ([referrerInfo objectForKey:@"isReferrerConfirmed"] && [[referrerInfo objectForKey:@"isReferrerConfirmed"] boolValue])){
+                    [self.txtReferrerCode setHidden:YES];
+                    
+                }
+
+                
+                self.claimButton.frame = CGRectMake(0, CGRectGetMaxY(self.txtReferrerCode.frame)+10, 100, 50);
                 [self.claimButton setTitle:@"Claim" forState:UIControlStateNormal];
                 [self.claimButton removeTarget:self action:@selector(signUpButtonClicked:) forControlEvents:UIControlEventTouchDown];
                 [self.claimButton addTarget:self action:@selector(claimButtonClicked:) forControlEvents:UIControlEventTouchDown];
                 [self.claimButton setTitleColor:self.greetingLabel.textColor forState:UIControlStateNormal];
-            }else if (![[referrerDetails valueForKey:@"FriendRewardEvent"] isEqualToString:@"Signup"]) {
+                
+                
+            }else if([[referrerDetails valueForKey:@"FriendRewardEvent"] isEqualToString:@"Signup"]){
+                
+                
+                if(([referrerInfo objectForKey:@"attributionSetting"] && [[referrerInfo objectForKey:@"attributionSetting"] integerValue] != 0) &&
+                   ([referrerInfo objectForKey:@"isReferrerConfirmed"] && ![[referrerInfo objectForKey:@"isReferrerConfirmed"] boolValue])){
+
+                self.txtReferrerCode = [[UITextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.messageLabel.frame)+15, 240, 40)];
+                self.txtReferrerCode.delegate = self;
+                self.txtReferrerCode.borderStyle = UITextBorderStyleRoundedRect;
+                self.txtReferrerCode.center = CGPointMake(SCREEN_WIDTH/2, self.txtReferrerCode.center.y);
+                self.txtReferrerCode.placeholder = @"Enter Referral Code";
+                [self.view addSubview:self.txtReferrerCode];
+                
+                if ([referrerDetails objectForKey:@"ReferrerCode"]) {
+                    self.txtReferrerCode.text = [referrerDetails objectForKey:@"ReferrerCode"];
+                }
+                
+                self.claimButton.frame = CGRectMake(0, CGRectGetMaxY(self.txtReferrerCode.frame)+10, 100, 50);
+                [self.claimButton setTitleColor:self.greetingLabel.textColor forState:UIControlStateNormal];
+                }
+                
+            }
+            else if (![[referrerDetails valueForKey:@"FriendRewardEvent"] isEqualToString:@"Signup"]) {
                 
                 [self.claimButton setTitle:@"Skip" forState:UIControlStateNormal];
                 [self.claimButton removeTarget:self action:@selector(signUpButtonClicked:) forControlEvents:UIControlEventTouchDown];
@@ -143,17 +192,83 @@
 
 -(void)signUpButtonClicked:(id)sender
 {
-    [self closeButtonClicked:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SignUpClicked" object:nil];
+    
+    if (([referrerInfo objectForKey:@"attributionSetting"] && [[referrerInfo objectForKey:@"attributionSetting"] integerValue] == 2 ) &&
+        ([referrerInfo objectForKey:@"isReferrerConfirmed"] && ![[referrerInfo objectForKey:@"isReferrerConfirmed"] boolValue]) &&
+        [self.txtReferrerCode.text isEqualToString:@""]) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please enter the Referralcode" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        alert.tag=1;
+        [alert show];
+        return;
+    }
+    
+    //check for referralcode and check if attribution setting is not only through link and attribution status
+    if ((![[self.txtReferrerCode.text stringByTrimmingCharactersInSet:
+            [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""])
+        && ([referrerInfo objectForKey:@"attributionSetting"] && [[referrerInfo objectForKey:@"attributionSetting"] integerValue] != 0 )
+        && ([referrerInfo objectForKey:@"isReferrerConfirmed"] && ![[referrerInfo objectForKey:@"isReferrerConfirmed"] boolValue])){
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+        [AppVirality submitReferralCode:self.txtReferrerCode.text completion:^(BOOL success, NSError *error) {
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+            if (success) {
+                NSLog(@"Referral Code applied Successfully");
+            }
+            else{
+                NSLog(@"Invalid Referral Code");
+            }
+            
+            [self closeButtonClicked:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SignUpClicked" object:nil];
+        }];
+        
+    }
+    else
+    {
+        [self closeButtonClicked:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SignUpClicked" object:nil];
+    }
+    
+    
 }
 -(void)claimButtonClicked:(id)sender
 {
     if ([self.textField.text isEqualToString:@""]) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please enter the email" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        alert.tag = 1;
         [alert show];
         return;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //check for referralcode and check if attribution setting is not only through link and attribution status
+    if ((![[self.txtReferrerCode.text stringByTrimmingCharactersInSet:
+           [NSCharacterSet whitespaceCharacterSet]] isEqualToString:@""])
+        && ([referrerInfo objectForKey:@"attributionSetting"] && [referrerInfo objectForKey:@"attributionSetting"] != 0 )
+        && ([referrerInfo objectForKey:@"isReferrerConfirmed"] && ![[referrerInfo objectForKey:@"isReferrerConfirmed"] boolValue])){
+        
+        [AppVirality submitReferralCode:self.txtReferrerCode.text completion:^(BOOL success, NSError *error) {
+            
+            if (success) {
+                NSLog(@"Referral Code applied Successfully");
+            }
+            else{
+                NSLog(@"Invalid Referral Code");
+            }
+            
+            [self processClaimButtonClick:nil];
+        }];
+        
+    }
+    else
+    {
+        [self processClaimButtonClick:nil];
+    }
+   
+}
+
+-(void)processClaimButtonClick:(id)sender
+{
     // update user Email before sending the conversion event
     [AppVirality setUserDetails:@{@"EmailId":self.textField.text} Oncompletion:^(BOOL success, NSError *error) {
         // Send install conversion event
@@ -166,12 +281,13 @@
             }
         }];
     }];
-   
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self closeButtonClicked:nil];
+    if (alertView.tag != 1) {
+        [self closeButtonClicked:nil];
+    }
 }
 
 -(void)closeButtonClicked:(id)sender
@@ -199,6 +315,8 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.textField resignFirstResponder];
+    [self.txtReferrerCode resignFirstResponder];
+
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -207,6 +325,7 @@
         [UIView setAnimationDuration:0.5];
         [UIView setAnimationBeginsFromCurrentState:YES];
         self.textField.frame = CGRectMake(self.textField.frame.origin.x, (self.textField.frame.origin.y - 100.0), self.textField.frame.size.width, self.textField.frame.size.height);
+        self.txtReferrerCode.frame = CGRectMake(self.txtReferrerCode.frame.origin.x, (self.txtReferrerCode.frame.origin.y - 100.0), self.txtReferrerCode.frame.size.width, self.txtReferrerCode.frame.size.height);
         [UIView commitAnimations];
     
 }
@@ -216,8 +335,10 @@
         [UIView setAnimationDuration:0.5];
         [UIView setAnimationBeginsFromCurrentState:YES];
         self.textField.frame = CGRectMake(self.textField.frame.origin.x, (self.textField.frame.origin.y + 100.0), self.textField.frame.size.width, self.textField.frame.size.height);
+        self.txtReferrerCode.frame = CGRectMake(self.txtReferrerCode.frame.origin.x, (self.txtReferrerCode.frame.origin.y + 100.0), self.txtReferrerCode.frame.size.width, self.txtReferrerCode.frame.size.height);
         [UIView commitAnimations];
 }
+
 /*
 #pragma mark - Navigation
 

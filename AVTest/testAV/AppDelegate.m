@@ -18,14 +18,13 @@
 
 static void onUncaughtException(NSException * exception)
 {
-    
     NSLog(@"uncaught exception: %@", exception.description);
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSSetUncaughtExceptionHandler(&onUncaughtException);
     
     // Override point for customization after application launch.
-	// Allow Cookiebased attribution 
+    // Enable cookie based attribution to achieve 100% attribution accuracy
     [AppVirality attributeUserBasedonCookie:@"YOUR-APP-KEY" OnCompletion:^(BOOL success, NSError *error) {
         // Init AppVirality SDK
 		[AppVirality initWithApiKey:@"YOUR-APP-KEY" OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {

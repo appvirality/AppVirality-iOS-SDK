@@ -36,6 +36,7 @@ typedef enum : NSUInteger {
 +(void)logout;
 +(void)attributeUserBasedonCookie:(NSString *)apiKey OnCompletion:(void(^)(BOOL success,NSError *error))completion;
 +(void)getReferrerDetailsDirect:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
++ (void)submitReferralCode:(NSString*)referralCode  completion:(void (^)(BOOL success,NSError *error))completion;
 
 @end
 

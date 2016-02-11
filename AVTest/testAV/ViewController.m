@@ -99,7 +99,12 @@
 
 -(IBAction)signup:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SignUpClicked" object:nil];
+    UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Please enter ReferralCode" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    av.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[av textFieldAtIndex:0] setPlaceholder:@"Referral Code"];
+    av.tag =54;
+    [av show];
+    
 }
 
 
@@ -153,6 +158,29 @@
         }
     }
     
+    //Update ReferralCode
+    if (actionSheet.tag==54) {
+        if (buttonIndex!=0&&(![[actionSheet textFieldAtIndex:0].text isEqualToString:@""])) {
+            NSLog(@"entered referralcode  %@",[actionSheet textFieldAtIndex:0].text);
+            [AppVirality submitReferralCode:[actionSheet textFieldAtIndex:0].text completion:^(BOOL success, NSError *error) {
+                
+                if (success) {
+                    NSLog(@"Referral Code applied Successfully");
+                }
+                else{
+                    NSLog(@"Invalid Referral Code");
+                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"SignUpClicked" object:nil];
+            }];
+            
+        }
+        else
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SignUpClicked" object:nil];
+
+        }
+    }
+    
 }
 
 // Show Growthhack
@@ -191,6 +219,7 @@
     }];
     
 }
+
 
 // Get aggriaged user Balance & Friends List
 -(IBAction)getUserBalance:(id)sender

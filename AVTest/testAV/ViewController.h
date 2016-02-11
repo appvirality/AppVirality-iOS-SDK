@@ -12,9 +12,8 @@
 @interface ViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIButton *updateUserDetails;
-@property (nonatomic, weak) IBOutlet UIButton *signUp;
 @property (nonatomic, weak) IBOutlet UIButton *showGrowthHack;
-@property (nonatomic, weak) IBOutlet UIButton *transaction,*miniNotification,*userRewards,*getReferrerReward,*getUserCoupons;
+@property (nonatomic, weak) IBOutlet UIButton *transaction,*signUp,*miniNotification,*userRewards,*getReferrerReward,*getUserCoupons;
 
 
 -(IBAction)showGrowthHack:(id)sender;
