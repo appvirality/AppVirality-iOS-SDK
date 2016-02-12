@@ -32,6 +32,25 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fb</string>
+		<string>whatsapp</string>
+		<string>twitter</string>
+		<string>fbapi</string>
+		<string>fbapi20130214</string>
+    <string>fbapi20130410</string>
+    <string>fbapi20130702</string>
+    <string>fbapi20131010</string>
+    <string>fbapi20131219</string>    
+    <string>fbapi20140410</string>
+    <string>fbapi20140116</string>
+    <string>fbapi20150313</string>
+    <string>fbapi20150629</string>
+    <string>fbauth</string>
+    <string>fbauth2</string>
+    <string>fb-messenger-api20140430</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

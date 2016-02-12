@@ -274,7 +274,7 @@ NSDictionary * referrerInfo;
         // Send install conversion event
         [AppVirality saveConversionEvent:@{@"eventName":@"Install"} completion:^(NSDictionary *conversionResult,NSError *error) {
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            if (conversionResult&&[conversionResult objectForKey:@"success"]&&![[conversionResult valueForKeyPath:@"friend.rewardid"] isEqual:[NSNull null]]) {
+            if (conversionResult&&[conversionResult objectForKey:@"success"]&&(![[conversionResult valueForKeyPath:@"friend.rewarddtlid"] isEqual:[NSNull null]] || ![[conversionResult valueForKeyPath:@"friend.rewardid"] isEqual:[NSNull null]])) {
                 UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:[[conversionResult valueForKey:@"success"] boolValue]?@"Hurray..! you will receive your reward shortly":@"Reward is on for first time users, but you can still earn by referring your friends" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
                 
