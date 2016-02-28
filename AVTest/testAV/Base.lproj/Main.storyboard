@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -51,15 +51,6 @@
                                     <action selector="getUserBalance:" destination="vXZ-lx-hvc" eventType="touchDown" id="EGv-9x-1dd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emw-DD-dBS">
-                                <rect key="frame" x="54" y="105" width="180" height="40"/>
-                                <state key="normal" title="Signup">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signup:" destination="vXZ-lx-hvc" eventType="touchDown" id="Od0-xK-xyl"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eE1-wY-K5E">
                                 <rect key="frame" x="54" y="348" width="180" height="40"/>
                                 <state key="normal" title="Rewards Breakup">
@@ -75,7 +66,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="transaction:" destination="vXZ-lx-hvc" eventType="touchDown" id="tWd-mm-lzh"/>
+                                    <action selector="transaction:" destination="vXZ-lx-hvc" eventType="touchDown" id="RqZ-cw-DUw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1x-ZY-ZfC">
@@ -87,16 +78,45 @@
                                     <action selector="getUserCoupons:" destination="vXZ-lx-hvc" eventType="touchDown" id="xYO-fV-acv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gm0-MM-iPz">
+                                <rect key="frame" x="54" y="452" width="180" height="40"/>
+                                <state key="normal" title="Init SDK with Email">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="initWithEmail:" destination="vXZ-lx-hvc" eventType="touchDown" id="pOn-uU-T7p"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Bx-zZ-IfE">
+                                <rect key="frame" x="54" y="107" width="180" height="40"/>
+                                <state key="normal" title="signup">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signup:" destination="vXZ-lx-hvc" eventType="touchDown" id="gwv-tk-LtA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sct-XX-R5H">
+                                <rect key="frame" x="54" y="507" width="180" height="40"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOut:" destination="vXZ-lx-hvc" eventType="touchDown" id="qcQ-4N-0yc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="btnInitWithEmail" destination="Gm0-MM-iPz" id="dbD-gq-WQd"/>
+                        <outlet property="btnLogOut" destination="Sct-XX-R5H" id="rrd-yp-BVS"/>
                         <outlet property="getReferrerReward" destination="eE1-wY-K5E" id="Fq1-VY-rbW"/>
                         <outlet property="getUserCoupons" destination="w1x-ZY-ZfC" id="RMn-Ff-DUq"/>
                         <outlet property="miniNotification" destination="N36-44-my2" id="E75-Bj-w6Z"/>
                         <outlet property="showGrowthHack" destination="Fyo-pT-wqN" id="Zr6-OF-rvo"/>
-                        <outlet property="signUp" destination="emw-DD-dBS" id="7ya-Yu-Kq1"/>
-                        <outlet property="transaction" destination="44l-io-Clp" id="TrE-Ze-HPn"/>
+                        <outlet property="signUp" destination="9Bx-zZ-IfE" id="eKS-Ml-P3r"/>
+                        <outlet property="transaction" destination="44l-io-Clp" id="XpI-5z-VtX"/>
                         <outlet property="updateUserDetails" destination="ET6-CU-9aI" id="CaD-VH-HsE"/>
                         <outlet property="userRewards" destination="SP7-6e-k4E" id="FSg-rI-CQL"/>
                     </connections>

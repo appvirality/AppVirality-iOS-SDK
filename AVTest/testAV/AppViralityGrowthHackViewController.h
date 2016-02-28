@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppVirality.h"
 #import "AppViralityUIUtility.h"
+#import <Social/Social.h>
 
 @interface AppViralityGrowthHackViewController : UITableViewController
 @property (nonatomic,strong) UILabel * greetingLabel,*messageLabel,*shareLabel;

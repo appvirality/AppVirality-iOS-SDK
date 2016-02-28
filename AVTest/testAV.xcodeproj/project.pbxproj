@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21007FFF1C837B860044E7B2 /* libAppVirality.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21007FFE1C837B860044E7B2 /* libAppVirality.a */; };
 		210973631B334B2A0091562B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210973621B334B2A0091562B /* AdSupport.framework */; };
-		210E6C721B34877100ECB848 /* libAppVirality.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210E6C711B34877100ECB848 /* libAppVirality.a */; };
+		21BB526E1C8248A3000BA66C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB526D1C8248A3000BA66C /* Social.framework */; };
 		6A6DBED21ADC5CAA00C13C2E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6DBED11ADC5CAA00C13C2E /* main.m */; };
 		6A6DBED51ADC5CAA00C13C2E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6DBED41ADC5CAA00C13C2E /* AppDelegate.m */; };
 		6A6DBED81ADC5CAA00C13C2E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6DBED71ADC5CAA00C13C2E /* ViewController.m */; };
@@ -48,9 +49,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		21007FFE1C837B860044E7B2 /* libAppVirality.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppVirality.a; sourceTree = "<group>"; };
 		210973621B334B2A0091562B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		210E6C711B34877100ECB848 /* libAppVirality.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppVirality.a; sourceTree = "<group>"; };
-		6A41A4B71AF67ABC003C1415 /* AppVirality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVirality.h; sourceTree = "<group>"; };
+		2110C1D31C0DF38400B7B650 /* AppVirality.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppVirality.h; sourceTree = "<group>"; };
+		21BB526D1C8248A3000BA66C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6A6DBECC1ADC5CAA00C13C2E /* testAV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A6DBED01ADC5CAA00C13C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A6DBED11ADC5CAA00C13C2E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,8 +85,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21007FFF1C837B860044E7B2 /* libAppVirality.a in Frameworks */,
+				21BB526E1C8248A3000BA66C /* Social.framework in Frameworks */,
 				210973631B334B2A0091562B /* AdSupport.framework in Frameworks */,
-				210E6C721B34877100ECB848 /* libAppVirality.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +112,7 @@
 		6A41A4B61AF67ABC003C1415 /* AppVirality */ = {
 			isa = PBXGroup;
 			children = (
-				6A41A4B71AF67ABC003C1415 /* AppVirality.h */,
+				2110C1D31C0DF38400B7B650 /* AppVirality.h */,
 			);
 			path = AppVirality;
 			sourceTree = "<group>";
@@ -117,6 +120,7 @@
 		6A6DBEC31ADC5CAA00C13C2E = {
 			isa = PBXGroup;
 			children = (
+				21BB526D1C8248A3000BA66C /* Social.framework */,
 				210973621B334B2A0091562B /* AdSupport.framework */,
 				6A6DBECE1ADC5CAA00C13C2E /* testAV */,
 				6A6DBEE81ADC5CAA00C13C2E /* testAVTests */,
@@ -138,12 +142,12 @@
 			children = (
 				6A6DBED31ADC5CAA00C13C2E /* AppDelegate.h */,
 				6A6DBED41ADC5CAA00C13C2E /* AppDelegate.m */,
+				21007FFE1C837B860044E7B2 /* libAppVirality.a */,
 				6A41A4B51AF67ABC003C1415 /* include */,
 				6A6DBED61ADC5CAA00C13C2E /* ViewController.h */,
 				6A6DBED71ADC5CAA00C13C2E /* ViewController.m */,
 				6ABAEC2A1B2F37AD0007FF78 /* MBProgressHUD */,
 				6A7D8BCE1AFAA39E00870AE2 /* AppViralityWelcomeViewController.h */,
-				210E6C711B34877100ECB848 /* libAppVirality.a */,
 				6A7D8BCF1AFAA39E00870AE2 /* AppViralityWelcomeViewController.m */,
 				6A7D8BD11AFB4AC100870AE2 /* AppViralityGrowthHackViewController.h */,
 				6A7D8BD21AFB4AC100870AE2 /* AppViralityGrowthHackViewController.m */,
@@ -383,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -420,7 +424,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -431,18 +435,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/testAV",
 				);
 				INFOPLIST_FILE = testAV/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/testAV",
 					"$(PROJECT_DIR)/testAV/include/AppVirality",
+					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -451,18 +459,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/testAV",
 				);
 				INFOPLIST_FILE = testAV/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/testAV",
 					"$(PROJECT_DIR)/testAV/include/AppVirality",
+					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

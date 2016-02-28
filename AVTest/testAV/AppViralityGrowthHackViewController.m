@@ -289,10 +289,32 @@
 
 -(void)faceBookButtonClicked:(id)sender
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://publish/profile/me?text=%@",[self.shareMesgs objectForKey:@"Facebook"]?[[self.shareMesgs valueForKey:@"Facebook"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]:@""]];
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        [self recordSocialActionForActionType:@"Facebook"];
-        [[UIApplication sharedApplication] openURL:url];
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://publish/profile/me?text=%@",[self.shareMesgs objectForKey:@"Facebook"]?[[self.shareMesgs valueForKey:@"Facebook"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]:@""]];
+//    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+//        [self recordSocialActionForActionType:@"Facebook"];
+//        [[UIApplication sharedApplication] openURL:url];
+//    }
+    
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    {
+        SLComposeViewController *facebookcomposer =
+        [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [facebookcomposer addURL:[NSURL URLWithString:[self.shareUrls objectForKey:@"Facebook"]?[self.shareUrls valueForKey:@"Facebook"]:@""]];
+        [self presentViewController:facebookcomposer animated:YES completion:nil];
+        [facebookcomposer setCompletionHandler:^(SLComposeViewControllerResult result)
+         {
+             switch (result)
+             {
+                 case SLComposeViewControllerResultDone:
+                    [self recordSocialActionForActionType:@"Facebook"];
+                     break;
+                 case SLComposeViewControllerResultCancelled:
+                     NSLog(@"cancelled");
+                     break;
+                 default:
+                     break;
+             }
+         }];
     }
 }
 

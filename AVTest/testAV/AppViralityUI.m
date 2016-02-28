@@ -15,7 +15,7 @@
 + (void)showGrowthHack:(GrowthHackType)growthHack  FromController:(UIViewController*)viewController
 {
     [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
-    [AppVirality showGrowthHack:growthHack completion:^(NSDictionary *campaignDetails,NSError*error) {
+    [AppVirality getGrowthHack:growthHack completion:^(NSDictionary *campaignDetails,NSError*error) {
         [MBProgressHUD hideHUDForView:viewController.view animated:YES];
         if (campaignDetails) {
             AppViralityGrowthHackViewController * growthHackVC = [[AppViralityGrowthHackViewController alloc] initWithCampaignDetails:campaignDetails ForGrowthHack:growthHack];
@@ -37,7 +37,7 @@
 
 + (void)showLaunchBar:(GrowthHackType)growthHack  FromController:(UIViewController*)viewController
 {
-    [AppVirality showGrowthHack:growthHack completion:^(NSDictionary *campaignDetails,NSError* error) {
+    [AppVirality getGrowthHack:growthHack completion:^(NSDictionary *campaignDetails,NSError* error) {
         if (campaignDetails&&[campaignDetails objectForKey:@"OfferTitle"]) {
             
             [AppViralityAlertViewController CurrentView:viewController.view errorString:campaignDetails isPopup:NO];
@@ -84,7 +84,7 @@
 
 + (void)showPopUp:(GrowthHackType)growthHack  FromController:(UIViewController*)viewController
 {
-    [AppVirality showGrowthHack:growthHack completion:^(NSDictionary *campaignDetails,NSError * error) {
+    [AppVirality getGrowthHack:growthHack completion:^(NSDictionary *campaignDetails,NSError * error) {
         if (campaignDetails&&[campaignDetails objectForKey:@"OfferTitle"]) {
             
             [AppViralityAlertViewController CurrentView:viewController.view errorString:campaignDetails isPopup:YES];

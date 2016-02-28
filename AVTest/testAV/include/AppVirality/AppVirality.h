@@ -16,9 +16,10 @@ typedef enum : NSUInteger {
 
 @interface AppVirality : NSObject
 + (void)init;
-+ (void)initWithApiKey:(NSString *)apiKey OnCompletion:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
+/* If your App has Login/Logout, initialize the SDK after user login/signup and send user emailid, referrercode(if user enters) in dictionary.Otherwise send nil. You can also send user location details(city,state,country) in the dictionary along with user email, if you are targetting particular location */
++ (void)initWithApiKey:(NSString *)apiKey WithParams:(NSDictionary*)userDetails OnCompletion:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
 +(void)getReferrerDetails:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
-+ (void)showGrowthHack:(GrowthHackType)growthHack  completion:(void (^)(NSDictionary* campaignDetails,NSError *error))completion;
++ (void)getGrowthHack:(GrowthHackType)growthHack  completion:(void (^)(NSDictionary* campaignDetails,NSError *error))completion;
 + (void)saveConversionEvent:(NSDictionary*)eventDetails  completion:(void (^)(NSDictionary* conversionResult,NSError *error))completion;
 + (void)recordSocialActionForGrowthHack:(GrowthHackType)growthHack WithParams:(NSDictionary*)actionParams  completion:(void (^)(BOOL success,NSError *error))completion;
 + (void)registerAsDebugDevice:(void (^)(BOOL success,NSError *error))completion;
@@ -37,6 +38,7 @@ typedef enum : NSUInteger {
 +(void)attributeUserBasedonCookie:(NSString *)apiKey OnCompletion:(void(^)(BOOL success,NSError *error))completion;
 +(void)getReferrerDetailsDirect:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
 + (void)submitReferralCode:(NSString*)referralCode  completion:(void (^)(BOOL success,NSError *error))completion;
++(void)enableInitWithEmail;
 
 @end
 

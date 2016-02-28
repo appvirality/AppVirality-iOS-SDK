@@ -14,6 +14,8 @@
 
 @end
 
+//static NSString *AppVirality_AppKey = @"71f683f4dab74cd3af5aa44f01768219";
+
 @implementation AppDelegate
 
 static void onUncaughtException(NSException * exception)
@@ -25,14 +27,17 @@ static void onUncaughtException(NSException * exception)
     
     // Override point for customization after application launch.
     // Enable cookie based attribution to achieve 100% attribution accuracy
-    [AppVirality attributeUserBasedonCookie:@"YOUR-APP-KEY" OnCompletion:^(BOOL success, NSError *error) {
-        // Init AppVirality SDK
-		[AppVirality initWithApiKey:@"YOUR-APP-KEY" OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
-            
-            //NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
-            //NSLog(@"User has Referrer %@", referrerDetails);
-        }];
-    }];
+//    [AppVirality attributeUserBasedonCookie:AppVirality_AppKey OnCompletion:^(BOOL success, NSError *error) {
+//        // Init AppVirality SDK
+//        [AppVirality enableInitWithEmail];
+//        NSDictionary * userDetails = @{@"EmailId":@"mymail@test.com",@"ReferrerCode":@"refcode",@"isExistingUser":@"false"};
+//        [AppVirality initWithApiKey:AppVirality_AppKey WithParams:userDetails OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
+//            
+//            NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
+//            NSLog(@"User has Referrer %@", referrerDetails);
+//        }];
+//    }];
+    
     return YES;
 }
 

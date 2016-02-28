@@ -15,6 +15,10 @@
 
 @implementation ViewController
 
+static NSString *AppVirality_AppKey = @"71f683f4dab74cd3af5aa44f01768219";
+
+UITextField *textEmail,*textReferrerCode,*textExistingUser;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -51,6 +55,14 @@
     self.getUserCoupons.layer.cornerRadius = 5;
     self.getUserCoupons.layer.borderWidth = 1;
     self.getUserCoupons.layer.borderColor = self.getUserCoupons.titleLabel.textColor.CGColor;
+    
+    self.btnInitWithEmail.layer.cornerRadius = 5;
+    self.btnInitWithEmail.layer.borderWidth = 1;
+    self.btnInitWithEmail.layer.borderColor = self.userRewards.titleLabel.textColor.CGColor;
+    
+    self.btnLogOut.layer.cornerRadius = 5;
+    self.btnLogOut.layer.borderWidth = 1;
+    self.btnLogOut.layer.borderColor = self.userRewards.titleLabel.textColor.CGColor;
     
     
     //    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"AVapiKey"]);
@@ -116,6 +128,43 @@
     [av show];
 }
 
+-(IBAction)initWithEmail:(id)sender
+{
+    UIView *myView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 100)];
+    
+    textEmail = [[UITextField alloc] initWithFrame:CGRectMake(10,0,252,25)];
+    textEmail.borderStyle = UITextBorderStyleRoundedRect;
+    textEmail.placeholder = @"EmailId";
+    textEmail.keyboardAppearance = UIKeyboardAppearanceAlert;
+    [myView addSubview:textEmail];
+    
+    textReferrerCode = [[UITextField alloc] initWithFrame:CGRectMake(10,30,252,25)];
+    textReferrerCode.placeholder = @"ReferralCode";
+    textReferrerCode.borderStyle = UITextBorderStyleRoundedRect;
+    textReferrerCode.keyboardAppearance = UIKeyboardAppearanceAlert;
+    [myView addSubview:textReferrerCode];
+    
+    
+    textExistingUser = [[UITextField alloc] initWithFrame:CGRectMake(10,60,252,25)];
+    textExistingUser.placeholder = @"ExistingUser ture or false";
+    textExistingUser.borderStyle = UITextBorderStyleRoundedRect;
+    textExistingUser.keyboardAppearance = UIKeyboardAppearanceAlert;
+    [myView addSubview:textExistingUser];
+    
+    
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"INIT SDK" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    [av setValue:myView forKey:@"accessoryView"];
+    av.tag=55;
+    [av show];
+}
+
+-(IBAction)logOut:(id)sender
+{
+    [AppVirality logout];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Success..!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
 - (void)registerForRemoteNotifications{
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
@@ -149,7 +198,7 @@
     //Update UserDetails
     if (actionSheet.tag==53) {
         if (buttonIndex!=0&&(![[actionSheet textFieldAtIndex:0].text isEqualToString:@""]&&(![[actionSheet textFieldAtIndex:1].text isEqualToString:@""]))) {
-            NSDictionary * userDetails = @{@"EmailId":[actionSheet textFieldAtIndex:0].text,@"AppUserName":[actionSheet textFieldAtIndex:1].text,@"ProfileImage":@"https://growth.appvirality.com/Images/no_profileimage.jpg",@"UserIdInstore":@"av1",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"9876543210"};
+            NSDictionary * userDetails = @{@"EmailId":[actionSheet textFieldAtIndex:0].text,@"AppUserName":[actionSheet textFieldAtIndex:1].text,@"ProfileImage":@"https://growth.appvirality.com/Images/no_profileimage.jpg",@"UserIdInstore":@"av1",@"city":@"Pune",@"state":@"Maharashtra",@"country":@"India",@"Phone":@"987654321"};
 
             [AppVirality setUserDetails:userDetails Oncompletion:^(BOOL success, NSError *error) {
                 NSLog(@"User Details update Status %d", success);
@@ -178,6 +227,34 @@
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"SignUpClicked" object:nil];
 
+        }
+    }
+    
+    //Init with Email
+    if (actionSheet.tag==55) {
+        if (buttonIndex!=0&&(![textEmail.text isEqualToString:@""])) {
+            NSLog(@"entered EmailID  %@",textEmail.text);
+            NSDictionary * userDetails = [NSMutableDictionary dictionary];
+            [userDetails setValue:textEmail.text forKey:@"EmailId"];
+            if (![textReferrerCode.text isEqualToString:@""]) {
+                [userDetails setValue:textReferrerCode.text forKey:@"ReferrerCode"];
+            }
+            if (![textExistingUser.text isEqualToString:@""]) {
+                [userDetails setValue:textExistingUser.text forKey:@"isExistingUser"];
+            }
+            
+            // Enable cookie based attribution to achieve 100% attribution accuracy
+            [AppVirality attributeUserBasedonCookie:AppVirality_AppKey OnCompletion:^(BOOL success, NSError *error) {
+
+                [AppVirality enableInitWithEmail];
+                // Init AppVirality SDK
+                [AppVirality initWithApiKey:AppVirality_AppKey WithParams:userDetails OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
+                    
+                    NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
+                    NSLog(@"User has Referrer %@", referrerDetails);
+                }];
+            }];
+            
         }
     }
     
