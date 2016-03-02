@@ -15,7 +15,6 @@
 
 @implementation ViewController
 
-static NSString *AppVirality_AppKey = @"71f683f4dab74cd3af5aa44f01768219";
 
 UITextField *textEmail,*textReferrerCode,*textExistingUser;
 
@@ -233,27 +232,27 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser;
     //Init with Email
     if (actionSheet.tag==55) {
         if (buttonIndex!=0&&(![textEmail.text isEqualToString:@""])) {
-            NSLog(@"entered EmailID  %@",textEmail.text);
-            NSDictionary * userDetails = [NSMutableDictionary dictionary];
-            [userDetails setValue:textEmail.text forKey:@"EmailId"];
-            if (![textReferrerCode.text isEqualToString:@""]) {
-                [userDetails setValue:textReferrerCode.text forKey:@"ReferrerCode"];
-            }
-            if (![textExistingUser.text isEqualToString:@""]) {
-                [userDetails setValue:textExistingUser.text forKey:@"isExistingUser"];
-            }
-            
-            // Enable cookie based attribution to achieve 100% attribution accuracy
-            [AppVirality attributeUserBasedonCookie:AppVirality_AppKey OnCompletion:^(BOOL success, NSError *error) {
-
-                [AppVirality enableInitWithEmail];
-                // Init AppVirality SDK
-                [AppVirality initWithApiKey:AppVirality_AppKey WithParams:userDetails OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
-                    
-                    NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
-                    NSLog(@"User has Referrer %@", referrerDetails);
-                }];
-            }];
+//            NSLog(@"entered EmailID  %@",textEmail.text);
+//            NSDictionary * userDetails = [NSMutableDictionary dictionary];
+//            [userDetails setValue:textEmail.text forKey:@"EmailId"];
+//            if (![textReferrerCode.text isEqualToString:@""]) {
+//                [userDetails setValue:textReferrerCode.text forKey:@"ReferrerCode"];
+//            }
+//            if (![textExistingUser.text isEqualToString:@""]) {
+//                [userDetails setValue:textExistingUser.text forKey:@"isExistingUser"];
+//            }
+//            static NSString *AppVirality_AppKey = @"YOUR-APP-KEY";
+//
+//            // Enable cookie based attribution to achieve 100% attribution accuracy
+//            [AppVirality attributeUserBasedonCookie:AppVirality_AppKey OnCompletion:^(BOOL success, NSError *error) {
+//
+//                [AppVirality enableInitWithEmail];
+//                // Init AppVirality SDK
+//                [AppVirality initWithApiKey:AppVirality_AppKey WithParams:userDetails OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
+//                    NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
+//                    NSLog(@"User has Referrer %@", referrerDetails);
+//                }];
+//            }];
             
         }
     }
