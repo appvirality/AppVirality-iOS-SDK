@@ -31,15 +31,24 @@ Initializing the AppVirality SDK has to be done at the very beginning of your Ap
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSSetUncaughtExceptionHandler(&onUncaughtException);
+    
+    // Override point for customization after application launch.
     // Enable cookie based attribution to achieve 100% attribution accuracy
-    [AppVirality attributeUserBasedonCookie:@"YOUR-APP-KEY" OnCompletion:^(BOOL success, NSError *error) {
+    [AppVirality attributeUserBasedonCookie:AppVirality_AppKey OnCompletion:^(BOOL success, NSError *error) {
+        
+        NSDictionary * userDetails = nil;
+        //if your App has login/logout and would like to allow multiple users to use single device, uncomment below lines
+        //[AppVirality enableInitWithEmail];
+        //userDetails = @{@"EmailId":@"USER-EMAIL-ID",@"ReferrerCode":@"REFERRER-CODE",@"isExistingUser":@"false"};
         // Init AppVirality SDK
-        [AppVirality initWithApiKey:@"YOUR-APP-KEY" OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
+        [AppVirality initWithApiKey:AppVirality_AppKey WithParams:userDetails OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
             
             //NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
             //NSLog(@"User has Referrer %@", referrerDetails);
         }];
     }];
+    
     return YES;
 }
 ```
