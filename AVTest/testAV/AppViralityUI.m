@@ -71,7 +71,14 @@
         if (welcomeVC) {
             UINavigationController * navVC = [[UINavigationController alloc] initWithRootViewController:welcomeVC];
             [viewController presentViewController:navVC animated:YES completion:^{
-                
+                //make isExistingUser True after showing welcome screen so that welcome screen should not be shown again.
+                if ([[NSUserDefaults standardUserDefaults] objectForKey:@"AV_ReferrerDetails"]) {
+                    NSMutableDictionary * referrerDetails = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"AV_ReferrerDetails"] mutableCopy];
+                    if ([referrerDetails objectForKey:@"isExistingUser"]) {
+                        [referrerDetails setValue:@"True" forKey:@"isExistingUser"];
+                        [[NSUserDefaults standardUserDefaults] setObject:referrerDetails forKey:@"AV_ReferrerDetails"];
+                    }
+                }
             }];
         }
     }];
