@@ -86,7 +86,7 @@ campaignDetails includes list of social actions configured on AppVirality Dashbo
 Call the below method after successful completion of the social action. i.e after sharing on social media. This records the user social action.
 
 ```objc
-[AppVirality recordSocialActionForGrowthHack:GrowthHackTypeWordOfMouth WithParams:@{@"shareMessage":[[campaignDetails valueForKeyPath:@"socialactions.shareMessage"]firstObject],@"socialActionId":[[campaignDetails valueForKeyPath:@"socialactions.socialActionId"]firstObject]} completion:^(BOOL success,NSError*error) {
+[AppVirality recordSocialActionForGrowthHack:GrowthHackTypeWordOfMouth WithParams:@{@"shareMessage":[[campaignDetails valueForKeyPath:@"socialactions.shareMessage"]firstObject],@"socialActionId":[[campaignDetails valueForKeyPath:@"socialactions.socialActionId"]firstObject],@"shortcode":[campaignDetails valueForKey:@"shortcode"]} completion:^(BOOL success,NSError*error) {
                         NSLog(@"social sucess %d",success);
                     }];
 
