@@ -217,7 +217,7 @@ If you are using [Sample App](https://github.com/appvirality/AppVirality-iOS-SDK
 Please have a look at our [Wiki page](https://github.com/appvirality/appvirality-sdk-android/wiki)
 
 1. [Getting Started With Appvirality iOS SDK Integration](https://github.com/appvirality/AppVirality-iOS-SDK)
-2. [AppVirality API for referral Growth Hack](https://github.com/appvirality/appvirality-sdk-android/wiki/AppVirality-API)
+2. [AppVirality API for referral Growth Hack](https://github.com/appvirality/AppVirality-API)
 3. [Test Referral Program on iOS](https://github.com/appvirality/AppVirality-iOS-SDK/blob/master/README.md#testing-referral-program-on-ios)
 4. [Using Custom Domain | Custom Share URL](https://github.com/appvirality/appvirality-sdk-android/wiki/Using-Custom-Domain)
 5. [Optional] [To Whom and When to Show Growth Hack](https://github.com/appvirality/appvirality-sdk-android/wiki/To-Whom-and-When-to-Show-Growth-Hack)
