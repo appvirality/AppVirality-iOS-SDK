@@ -349,9 +349,9 @@
 
 -(void)moreButtonClicked:(id)sender
 {
-    NSURL *myWebsite = [NSURL URLWithString:[[self.shareLabel.text componentsSeparatedByString:@"\n"] lastObject]];
+    //NSURL *myWebsite = [NSURL URLWithString:[[self.shareLabel.text componentsSeparatedByString:@"\n"] lastObject]];
     NSString * message = [[self.shareMesgs allValues] firstObject];
-    NSArray *objectsToShare = @[myWebsite,message];
+    NSArray *objectsToShare = @[message];
     
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
     
