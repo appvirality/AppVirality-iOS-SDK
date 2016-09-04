@@ -27,7 +27,7 @@ Import “AppVirality.h” the header file
 
 ###### Initialize
 
-Initializing the AppVirality SDK has to be done at the very beginning of your App i.e. at  -application:didFinishLaunchingWithOptions: method in AppDelegate file.
+Initializing the AppVirality SDK has to be done at the very beginning of your App i.e. at  -application:didFinishLaunchingWithOptions: method in AppDelegate file .
 
 ```objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
