@@ -1,4 +1,4 @@
-### AppVirality iOS SDK Integration steps 
+### AppVirality iOS SDK Integration steps  
 
 Register your iOS application at AppVirality.com and copy the AppKey from dashboard.
 
