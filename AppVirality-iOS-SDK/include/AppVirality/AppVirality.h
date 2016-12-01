@@ -12,11 +12,13 @@
 typedef enum : NSUInteger {
     GrowthHackTypeWordOfMouth ,
     GrowthHackTypeCustomerRetention,
+    GrowthHackTypeLoyalty,
+    GrowthHackTypeAll
 } GrowthHackType;
 
 @interface AppVirality : NSObject
 + (void)init;
-/* If your App has Login/Logout, initialize the SDK after user login/signup and send user emailid, referrercode(if user enters) in dictionary.Otherwise send nil. You can also send user location details(city,state,country) in the dictionary along with user email, if you are targetting particular location */
+/* If your App has Login/Logout, initialize the SDK after user login/signup and send user emailid and referrercode(if user enters) in dictionary.Otherwise send nil. You can also send user location details(city,state,country) in the dictionary along with user email, if you are targetting particular location */
 + (void)initWithApiKey:(NSString *)apiKey WithParams:(NSDictionary*)userDetails OnCompletion:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
 +(void)getReferrerDetails:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
 + (void)getGrowthHack:(GrowthHackType)growthHack  completion:(void (^)(NSDictionary* campaignDetails,NSError *error))completion;
@@ -24,6 +26,7 @@ typedef enum : NSUInteger {
 + (void)recordSocialActionForGrowthHack:(GrowthHackType)growthHack WithParams:(NSDictionary*)actionParams  completion:(void (^)(BOOL success,NSError *error))completion;
 + (void)registerAsDebugDevice:(void (^)(BOOL success,NSError *error))completion;
 + (void)getUserBalance:(GrowthHackType)growthHack  completion:(void (^)(NSDictionary* userInfo,NSError *error))completion;
++ (void)getUserBalanceV2:(GrowthHackType)growthHack  completion:(void (^)(NSDictionary* userInfo,NSError *error))completion;
 + (void)setUserDetails:(NSDictionary*)userDetails Oncompletion:(void (^)(BOOL success,NSError *error))completion ;
 + (void)setCustomURL:(NSString*)customUrl  completion:(void (^)(BOOL success,NSError *error))completion;
 + (void)getTerms:(GrowthHackType)growthHack  completion:(void (^)(NSDictionary* terms,NSError *error))completion;
