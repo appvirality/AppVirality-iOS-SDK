@@ -42,6 +42,7 @@ typedef enum : NSUInteger {
 +(void)getReferrerDetailsDirect:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
 + (void)submitReferralCode:(NSString*)referralCode  completion:(void (^)(BOOL success,NSError *error))completion;
 +(void)enableInitWithEmail;
++(void)checkAttribution:(NSString *)apiKey withReferrerCode:(NSString*)referrerCode OnCompletion:(void(^)(NSDictionary * referrerDetails,NSError *error))completion;
 
 @end
 

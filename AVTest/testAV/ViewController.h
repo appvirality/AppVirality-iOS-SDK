@@ -13,7 +13,8 @@
 
 @property (nonatomic, weak) IBOutlet UIButton *updateUserDetails,*btnInitWithEmail,*btnLogOut;
 @property (nonatomic, weak) IBOutlet UIButton *showGrowthHack;
-@property (nonatomic, weak) IBOutlet UIButton *transaction,*signUp,*miniNotification,*userRewards,*getReferrerReward,*getUserCoupons;
+@property (nonatomic, weak) IBOutlet UIButton *transaction,*signUp,*miniNotification,*userRewards,*getReferrerReward,*getUserCoupons,*btnCheckAttribution;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 -(IBAction)showGrowthHack:(id)sender;
@@ -26,6 +27,7 @@
 -(IBAction)getUserCoupons:(id)sender;
 -(IBAction)initWithEmail:(id)sender;
 -(IBAction)logOut:(id)sender;
+-(IBAction)checkAttribution:(id)sender;
 
 
 @end

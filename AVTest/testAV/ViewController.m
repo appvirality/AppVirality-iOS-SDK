@@ -16,7 +16,7 @@
 @implementation ViewController
 
 
-UITextField *textEmail,*textReferrerCode,*textExistingUser;
+UITextField *textEmail,*textReferrerCode,*textExistingUser,*textCountry;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,8 +61,11 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser;
     
     self.btnLogOut.layer.cornerRadius = 5;
     self.btnLogOut.layer.borderWidth = 1;
-    self.btnLogOut.layer.borderColor = self.userRewards.titleLabel.textColor.CGColor;
+    self.btnLogOut.layer.borderColor = self.btnLogOut.titleLabel.textColor.CGColor;
     
+    self.btnCheckAttribution.layer.cornerRadius = 5;
+    self.btnCheckAttribution.layer.borderWidth = 1;
+    self.btnCheckAttribution.layer.borderColor = self.btnCheckAttribution.titleLabel.textColor.CGColor;
     
     //    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"AVapiKey"]);
     //    NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
@@ -92,6 +95,9 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser;
         NSLog(@"conversion Event result %@",[note valueForKeyPath:@"userInfo.result"]);
     }];
     [self registerForRemoteNotifications];
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+300);
+
 }
 
 
@@ -117,7 +123,15 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser;
     [av show];
     
 }
-
+-(IBAction)checkAttribution:(id)sender
+{
+    UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Please enter ReferrerCode" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    av.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[av textFieldAtIndex:0] setPlaceholder:@"Referrer Code"];
+    av.tag =56;
+    [av show];
+    
+}
 
 -(IBAction)transaction:(id)sender
 {
@@ -149,6 +163,13 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser;
     textExistingUser.borderStyle = UITextBorderStyleRoundedRect;
     textExistingUser.keyboardAppearance = UIKeyboardAppearanceAlert;
     [myView addSubview:textExistingUser];
+    
+    textCountry = [[UITextField alloc] initWithFrame:CGRectMake(10,60,252,25)];
+    textCountry.placeholder = @"Country";
+    textCountry.borderStyle = UITextBorderStyleRoundedRect;
+    textCountry.keyboardAppearance = UIKeyboardAppearanceAlert;
+    [myView addSubview:textCountry];
+
     
     
     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"INIT SDK" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
@@ -256,6 +277,33 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser;
             
         }
     }
+    //check Attribution
+    if (actionSheet.tag==56) {
+        if (buttonIndex!=0) {
+            NSLog(@"entered referrercode  %@",[actionSheet textFieldAtIndex:0].text);
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [AppVirality checkAttribution:AppVirality_AppKey withReferrerCode:[actionSheet textFieldAtIndex:0].text OnCompletion:^(NSDictionary *referrerDetails, NSError *error) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+                if(!error && referrerDetails)
+                {
+                    NSLog(@"User has Referrer %@", referrerDetails);
+
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:[NSString stringWithFormat:@"hasReferrer: %@ isexistingUser: %@  ReferrerCode: %@ ReferrerName: %@",[referrerDetails valueForKey:@"hasReferrer"],[referrerDetails valueForKey:@"isExistingUser"],[referrerDetails valueForKey:@"ReferrerCode"],[referrerDetails valueForKey:@"ReferrerName"]] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+                else{
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:error? error.localizedDescription : @"Failed..!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+
+                }
+                
+            }];
+        }
+    }
+    
     
 }
 
@@ -301,11 +349,17 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser;
 -(IBAction)getUserBalance:(id)sender
 {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [AppVirality getUserBalance:GrowthHackTypeWordOfMouth completion:^(NSDictionary *userInfo, NSError *error) {
+    [AppVirality getUserBalanceV2:GrowthHackTypeAll completion:^(NSDictionary *userInfo, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
-        NSLog(@"Aggregated user Balance & Friends List %@", userInfo);
+        if(!error)
+        {
+            NSLog(@"Aggregated user Balance & Friends List %@", userInfo);
+        }
+        else{
+            NSLog(@"%@",[error localizedDescription]);
+        }
     }];
     
 }

@@ -76,6 +76,8 @@
                     NSMutableDictionary * referrerDetails = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"AV_ReferrerDetails"] mutableCopy];
                     if ([referrerDetails objectForKey:@"isExistingUser"]) {
                         [referrerDetails setValue:@"True" forKey:@"isExistingUser"];
+                        //added to handle existing user parameter for checkAttribution
+                        [[NSUserDefaults standardUserDefaults] setValue:@"True" forKey:@"AV_isExistingUser"];
                         [[NSUserDefaults standardUserDefaults] setObject:referrerDetails forKey:@"AV_ReferrerDetails"];
                     }
                 }
