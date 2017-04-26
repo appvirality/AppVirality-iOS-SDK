@@ -14,7 +14,7 @@
 @end
 
 @implementation ViewController
-
+static NSString *AppVirality_AppKey = @"YOUR-APP-KEY-HERE";
 
 UITextField *textEmail,*textReferrerCode,*textExistingUser,*textCountry;
 
@@ -67,13 +67,9 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser,*textCountry;
     self.btnCheckAttribution.layer.borderWidth = 1;
     self.btnCheckAttribution.layer.borderColor = self.btnCheckAttribution.titleLabel.textColor.CGColor;
     
-    //    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"AVapiKey"]);
-    //    NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
-    
-    //  [AppViralityUI showGrowthHack:GrowthHackTypeWordOfMouth FromController:self];
-    //    [AppVirality getReferrerDetails:^(NSDictionary *referrerDetails,NSError*error) {
-    //        NSLog(@"iski refferer %@",referrerDetails);
-    //    }];
+    self.btnChangeReferralCode.layer.cornerRadius = 5;
+    self.btnChangeReferralCode.layer.borderWidth = 1;
+    self.btnChangeReferralCode.layer.borderColor = self.btnChangeReferralCode.titleLabel.textColor.CGColor;
     
     //Show Welcome screen
     [AppViralityUI showWelcomeScreenFromController:self];
@@ -129,6 +125,16 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser,*textCountry;
     av.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[av textFieldAtIndex:0] setPlaceholder:@"Referrer Code"];
     av.tag =56;
+    [av show];
+    
+}
+
+-(IBAction)changeReferralCode:(id)sender
+{
+    UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Please enter New ReferralCode" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    av.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[av textFieldAtIndex:0] setPlaceholder:@"Referral Code"];
+    av.tag =57;
     [av show];
     
 }
@@ -253,27 +259,39 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser,*textCountry;
     //Init with Email
     if (actionSheet.tag==55) {
         if (buttonIndex!=0&&(![textEmail.text isEqualToString:@""])) {
-//            NSLog(@"entered EmailID  %@",textEmail.text);
-//            NSDictionary * userDetails = [NSMutableDictionary dictionary];
-//            [userDetails setValue:textEmail.text forKey:@"EmailId"];
-//            if (![textReferrerCode.text isEqualToString:@""]) {
-//                [userDetails setValue:textReferrerCode.text forKey:@"ReferrerCode"];
-//            }
-//            if (![textExistingUser.text isEqualToString:@""]) {
-//                [userDetails setValue:textExistingUser.text forKey:@"isExistingUser"];
-//            }
-//            static NSString *AppVirality_AppKey = @"YOUR-APP-KEY";
-//
-//            // Enable cookie based attribution to achieve 100% attribution accuracy
-//            [AppVirality attributeUserBasedonCookie:AppVirality_AppKey OnCompletion:^(BOOL success, NSError *error) {
-//
-//                [AppVirality enableInitWithEmail];
-//                // Init AppVirality SDK
-//                [AppVirality initWithApiKey:AppVirality_AppKey WithParams:userDetails OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
-//                    NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
-//                    NSLog(@"User has Referrer %@", referrerDetails);
-//                }];
-//            }];
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+            NSLog(@"entered EmailID  %@",textEmail.text);
+            NSDictionary * userDetails = [NSMutableDictionary dictionary];
+            [userDetails setValue:textEmail.text forKey:@"EmailId"];
+            if (![textReferrerCode.text isEqualToString:@""]) {
+                [userDetails setValue:textReferrerCode.text forKey:@"ReferrerCode"];
+            }
+            if (![textExistingUser.text isEqualToString:@""]) {
+                [userDetails setValue:textExistingUser.text forKey:@"isExistingUser"];
+            }
+            if (![textCountry.text isEqualToString:@""]) {
+                [userDetails setValue:textCountry.text forKey:@"country"];
+            }
+
+            // Enable cookie based attribution to achieve 100% attribution accuracy
+            [AppVirality attributeUserBasedonCookie:AppVirality_AppKey OnCompletion:^(BOOL success, NSError *error) {
+
+                [AppVirality enableInitWithEmail];
+                // Init AppVirality SDK
+                [AppVirality initWithApiKey:AppVirality_AppKey WithParams:userDetails OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
+                    NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
+                    NSLog(@"User has Referrer %@", referrerDetails);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                    
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:error? error.localizedDescription : @"Init Success..!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+
+
+                }];
+            }];
             
         }
     }
@@ -298,6 +316,32 @@ UITextField *textEmail,*textReferrerCode,*textExistingUser,*textCountry;
                     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:error? error.localizedDescription : @"Failed..!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alert show];
 
+                }
+                
+            }];
+        }
+    }
+    //Change Referral Code
+    if (actionSheet.tag==57) {
+        if (buttonIndex!=0) {
+            NSLog(@"entered referralcode  %@",[actionSheet textFieldAtIndex:0].text);
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [AppVirality customizeReferralCode:[actionSheet textFieldAtIndex:0].text completion:^(BOOL success, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+                
+                if(!error && success)
+                {
+                    NSLog(@"Update Success..!");
+                    
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"update success..!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+                else{
+                    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:error? error.localizedDescription : @"Update Failed..!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                    
                 }
                 
             }];
