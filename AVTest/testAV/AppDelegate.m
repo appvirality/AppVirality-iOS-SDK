@@ -14,8 +14,6 @@
 
 @end
 
-static NSString *AppVirality_AppKey = @"YOUR-APP-KEY";
-
 @implementation AppDelegate
 
 static void onUncaughtException(NSException * exception)
@@ -24,31 +22,9 @@ static void onUncaughtException(NSException * exception)
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSSetUncaughtExceptionHandler(&onUncaughtException);
-    
-//    [AppVirality checkAttribution:AppVirality_AppKey withReferrerCode:@"" OnCompletion:^(NSDictionary *referrerDetails, NSError *error) {
-//        NSLog(@"User has Referrer %@", referrerDetails);
-//    }];
-    
-    
-    // Override point for customization after application launch.
-    // Enable cookie based attribution to achieve 100% attribution accuracy
-//    [AppVirality attributeUserBasedonCookie:AppVirality_AppKey OnCompletion:^(BOOL success, NSError *error) {
-//        
-//        NSDictionary * userDetails = nil;//@{@"EmailId":@"avt2@gmail.com"};
-//        //if your App has login/logout and would like to allow multiple users to use single device a) uncomment below lines and initialize the SDK only after user login. b) Call [AppVirlaity logout] when user clicks on Logout button c)
-//        //[AppVirality enableInitWithEmail];
-//        //userDetails = @{@"EmailId":@"USER-EMAIL-ID",@"ReferrerCode":@"REFERRER-CODE",@"isExistingUser":@"false"};
-//        // Init AppVirality SDK
-//        [AppVirality initWithApiKey:AppVirality_AppKey WithParams:userDetails OnCompletion:^(NSDictionary *referrerDetails,NSError*error) {
-//            
-//            NSLog(@"user key %@",[[NSUserDefaults standardUserDefaults] valueForKey:@"userkey"]);
-//            NSLog(@"User has Referrer %@", referrerDetails);
-//            [self getRefDetails];
-//        }];
-//    }];
 
-    
     return YES;
+}
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -68,7 +44,7 @@ static void onUncaughtException(NSException * exception)
                             stringByReplacingOccurrencesOfString:@"<"withString:@""]
                            stringByReplacingOccurrencesOfString:@">" withString:@""]
                           stringByReplacingOccurrencesOfString: @" " withString: @""];
-    
+    [[NSUserDefaults standardUserDefaults] setValue:devToken forKey:@"AVUserDeviceToken"];
     [AppVirality setUserDetails:@{@"pushDeviceToken":devToken} Oncompletion:^(BOOL success, NSError *error) {
         
     }];

@@ -4,7 +4,7 @@
 //
 //  Created by Ram Papineni on 18/06/15.
 //  Copyright (c) 2015 AppVirality. All rights reserved.
-//	V1.2.12
+//	V1.2.13
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
