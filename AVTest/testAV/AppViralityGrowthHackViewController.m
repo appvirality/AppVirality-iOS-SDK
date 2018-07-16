@@ -287,6 +287,15 @@
     }
 }
 
+-(BOOL)isFacebookAppInstalled {
+    static NSString *const canOpenFacebookURL = @"fbauth2";
+    NSURLComponents *components = [[NSURLComponents alloc] init];
+    components.scheme = canOpenFacebookURL;
+    components.path = @"/";
+    return [[UIApplication sharedApplication]
+            canOpenURL:components.URL];
+}
+
 -(void)faceBookButtonClicked:(id)sender
 {
 //    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"fb://publish/profile/me?text=%@",[self.shareMesgs objectForKey:@"Facebook"]?[[self.shareMesgs valueForKey:@"Facebook"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]:@""]];
@@ -295,7 +304,7 @@
 //        [[UIApplication sharedApplication] openURL:url];
 //    }
     
-    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    if([self isFacebookAppInstalled])
     {
         SLComposeViewController *facebookcomposer =
         [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
@@ -315,6 +324,9 @@
                      break;
              }
          }];
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please install Facebook App" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 
@@ -324,6 +336,9 @@
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [self recordSocialActionForActionType:@"Twitter"];
         [[UIApplication sharedApplication] openURL:url];
+    }else{
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"Please install Twitter App" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 
